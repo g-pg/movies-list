@@ -1,0 +1,20 @@
+:root {
+    /* Dark */
+    --cl-bg: #0f0f0f;
+    --cl-accent: #F72585;
+    --cl-sec-accent: #3A0CA3;
+    --cl-main-text: #FFFFFF;
+
+}
+
+body {
+    background: var(--cl-bg);
+    color: var(--cl-main-text);
+    font-family: 'Inter';
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 80%
+}

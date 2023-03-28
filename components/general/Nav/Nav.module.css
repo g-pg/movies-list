@@ -1,0 +1,10 @@
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav ul a {
+    color: var(--cl-accent);
+    text-decoration: none;
+}
