@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function PrimaryBtn({ children }) {
+export default function PrimaryBtn({ children, style }) {
 	return (
 		<>
-			<button>{children}</button>
+			<button style={style}>{children}</button>
 			<style jsx>
 				{`
 					button {

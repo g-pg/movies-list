@@ -6,7 +6,7 @@ export default function PrimaryLayout({ children }) {
 		<>
 			<div className="big-container">
 				<Header />
-				<div className="container">{children}</div>
+				{children}
 				<Footer />
 
 				<style jsx>{`
@@ -15,6 +15,7 @@ export default function PrimaryLayout({ children }) {
 						flex-direction: column;
 						min-height: 100vh;
 						justify-content: space-between;
+						gap: 5rem;
 					}
 				`}</style>
 			</div>

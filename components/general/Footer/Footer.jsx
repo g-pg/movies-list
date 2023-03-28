@@ -9,7 +9,7 @@ export default function Footer() {
 
 			<style jsx>{`
 				footer {
-					margin-top: 2rem;
+					margin-top: auto;
 				}
 
 				.footer-wrapper {
