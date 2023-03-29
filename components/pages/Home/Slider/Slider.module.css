@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     width: calc(40 * var(--poster-width));
-    animation: scroll 50s infinite linear;
+    animation: scroll 60s infinite linear;
     position: relative;
     overflow: hidden;
 }
@@ -23,7 +23,7 @@
     }
 
     100% {
-        transform: translateX(-2000px);
+        transform: translateX(calc((-1 * 20) * var(--poster-width)));
     }
 
 }
@@ -44,7 +44,7 @@
     height: 50px;
     background-color: black;
     left: 0;
-    z-index: 999;
+    z-index: 10;
     filter: blur(8px);
     opacity: 1;
 }
