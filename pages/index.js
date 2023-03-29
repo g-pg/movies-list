@@ -1,6 +1,6 @@
 import Header from "@components/general/Header/Header";
 import PrimaryLayout from "@components/general/PrimaryLayout/PrimaryLayout";
-import Carroussel from "@components/pages/Home/Carroussel/Carroussel";
+import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
 import Head from "next/head";
 
@@ -29,7 +29,7 @@ export default function Home({ popularMovies }) {
 			<main>
 				<PrimaryLayout>
 					<HeroSection />
-					<Carroussel popularMovies={popularMovies} />
+					<Slider popularMovies={popularMovies} style={{ marginTop: "8rem" }} />
 				</PrimaryLayout>
 			</main>
 		</>
