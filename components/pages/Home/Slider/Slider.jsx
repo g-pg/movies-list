@@ -8,7 +8,7 @@ export default function Slider({ popularMovies, style }) {
 	return (
 		<section className={styles.section} style={style}>
 			<div className={classNames(styles.slider)}>
-				{popularMovies.results.map((el, index) => {
+				{popularMovies.results.map((el) => {
 					return (
 						<Image
 							width="154"
@@ -19,7 +19,7 @@ export default function Slider({ popularMovies, style }) {
 						/>
 					);
 				})}
-				{popularMovies.results.map((el, index) => {
+				{popularMovies.results.map((el) => {
 					console.log(el.poster_Path);
 					return (
 						<Image
