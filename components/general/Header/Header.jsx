@@ -19,6 +19,11 @@ export default function Header() {
 					gap: 2rem;
 					padding-block: 1rem;
 				}
+
+				h1 {
+					color: var(--cl-accent);
+					font-size: 1.2rem;
+				}
 			`}</style>
 		</>
 	);

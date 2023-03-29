@@ -15,7 +15,7 @@ export default function PrimaryLayout({ children }) {
 						flex-direction: column;
 						min-height: 100vh;
 						justify-content: space-between;
-						gap: 5rem;
+						gap: 2rem;
 					}
 				`}</style>
 			</div>

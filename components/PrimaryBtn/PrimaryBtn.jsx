@@ -21,10 +21,6 @@ export default function PrimaryBtn({ children, style }) {
 
 						transition: all 0.2s ease;
 					}
-
-					button:hover {
-						background: var(--cl-sec-accent);
-					}
 				`}
 			</style>
 		</>
