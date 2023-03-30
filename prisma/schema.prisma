@@ -16,7 +16,8 @@ model User {
   hashedPassword String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  moviesSeen String[] @db.ObjectId
+  moviesSeen String[] 
+  movesToSee String[]
   sessions Session[]
   accounts Account[]
 }
