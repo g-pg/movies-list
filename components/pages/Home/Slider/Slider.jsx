@@ -1,10 +1,8 @@
 import styles from "./Slider.module.css";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 export default function Slider({ popularMovies, style }) {
-	const imgRefs = useRef([]);
 	return (
 		<section className={styles.section} style={style}>
 			<div className={classNames(styles.slider)}>
@@ -20,7 +18,6 @@ export default function Slider({ popularMovies, style }) {
 					);
 				})}
 				{popularMovies.results.map((el) => {
-					console.log(el.poster_Path);
 					return (
 						<Image
 							width="154"
