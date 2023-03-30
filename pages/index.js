@@ -4,6 +4,7 @@ import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
 import Head from "next/head";
 import AuthModal from "@components/general/Auth/AuthModal";
+import { useState } from "react";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;
@@ -19,6 +20,7 @@ export async function getStaticProps() {
 	};
 }
 export default function Home({ popularMovies }) {
+	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
 			<Head>
@@ -29,9 +31,10 @@ export default function Home({ popularMovies }) {
 			</Head>
 			<main>
 				<PrimaryLayout>
-					<HeroSection />
+					<HeroSection setShowModal={setShowModal} />
 					<Slider popularMovies={popularMovies} style={{ marginTop: "8rem" }} />
 				</PrimaryLayout>
+				{showModal && <AuthModal setShowModal={setShowModal} />}
 			</main>
 		</>
 	);

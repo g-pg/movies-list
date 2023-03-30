@@ -83,12 +83,8 @@ export default function AuthModal({ setShowModal }) {
 					* Esta é uma aplicação de estudos. Todos os dados serão deletados em 7 dias
 					a partir do registro.
 				</p>
-				<button className={styles.closeB}>
-					<FontAwesomeIcon
-						icon={faXmark}
-						onClick={() => setShowModal(false)}
-						className={styles.closeBtn}
-					/>
+				<button onClick={() => setShowModal(false)} className={styles.closeBtn}>
+					<FontAwesomeIcon icon={faXmark} style={{ fontSize: "5rem" }} />
 				</button>
 			</div>
 			<div className={styles.overlay} onClick={() => setShowModal(false)}></div>
