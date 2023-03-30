@@ -24,22 +24,26 @@ export default function AuthModal({ setShowModal }) {
 		if (formType === "register") {
 			console.log("registrando");
 			register();
+		} else if (formType === "login") {
+			console.log("logando");
+			login();
 		}
 	}
+
+	const login = useCallback(async () => {
+		const { userName, password } = formData;
+		console.log("login");
+	}, [formData]);
 
 	const register = useCallback(async () => {
 		const { userName, password } = formData;
 
 		try {
-			await axios.post(
-				"/api/register",
-				{ userName, password },
-				{
-					headers: {
-						"Content-Type": "application/json",
-					},
-				}
-			);
+			await axios.post("/api/register", formData, {
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
 		} catch (error) {
 			console.log(error);
 		}
