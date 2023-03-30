@@ -88,7 +88,7 @@ export default function AuthModal({ setShowModal }) {
 					a partir do registro.
 				</p>
 				<button onClick={() => setShowModal(false)} className={styles.closeBtn}>
-					<FontAwesomeIcon icon={faXmark} style={{ fontSize: "5rem" }} />
+					<FontAwesomeIcon icon={faXmark} style={{ fontSize: "1.8rem" }} />
 				</button>
 			</div>
 			<div className={styles.overlay} onClick={() => setShowModal(false)}></div>
