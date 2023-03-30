@@ -3,6 +3,7 @@ import PrimaryLayout from "@components/general/PrimaryLayout/PrimaryLayout";
 import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
 import Head from "next/head";
+import AuthModal from "@components/general/Auth/AuthModal";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;

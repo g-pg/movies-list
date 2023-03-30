@@ -1,9 +1,11 @@
 import React from "react";
 
-export default function PrimaryBtn({ children, style }) {
+export default function PrimaryBtn({ children, style, onClick, type }) {
 	return (
 		<>
-			<button style={style}>{children}</button>
+			<button style={style} onClick={onClick} type={type}>
+				{children}
+			</button>
 			<style jsx>
 				{`
 					button {
@@ -12,7 +14,7 @@ export default function PrimaryBtn({ children, style }) {
 						justify-content: center;
 						font-weight: 700;
 						background: var(--cl-accent);
-						border-radius: 8px;
+						border-radius: 12px;
 						outline: none;
 						border: none;
 						color: white;
