@@ -9,7 +9,7 @@ export const authOptions = {
 	providers: [
 		Credentials({
 			id: "credentials",
-			name: "Credentials",
+			name: "credentials",
 			credentials: {
 				userName: {
 					label: "Usuário",
@@ -21,7 +21,7 @@ export const authOptions = {
 				},
 			},
 			async authorize(credentials) {
-				if (!credentials?.userName || !credentials?.password) {
+				if (!credentials.userName || !credentials.password) {
 					throw new Error("É preciso preencher o usuário e a senha.");
 				}
 

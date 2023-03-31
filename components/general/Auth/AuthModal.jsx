@@ -6,11 +6,14 @@ import { useRouter } from "next/router";
 import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoLogoGithub } from "react-icons/io";
+import { FcGoogle } from "react-icons/fc";
 import styles from "./AuthModal.module.css";
 
 export default function AuthModal({ setShowModal }) {
 	const router = useRouter();
+	const [loading, setLoading] = useState(false);
+	const [warning, setWarning] = useState("");
 	const [formType, setFormType] = useState("login");
 
 	const [formData, setFormData] = useState({
@@ -18,6 +21,10 @@ export default function AuthModal({ setShowModal }) {
 		password: "",
 	});
 
+	function handleChangeFormType(type) {
+		setWarning("");
+		setFormType(type);
+	}
 	function handleChange(e) {
 		setFormData((prev) => {
 			return { ...prev, [e.target.id]: e.target.value };
@@ -38,30 +45,40 @@ export default function AuthModal({ setShowModal }) {
 	const login = useCallback(async () => {
 		// const { userName, password } = formData;
 		try {
-			await signIn("credentials", {
+			const res = await signIn("credentials", {
 				userName: formData.userName,
 				password: formData.password,
 				redirect: false,
 			});
-
-			router.push("/user");
-			console.log("loguei!");
+			if (res.ok) {
+				router.push("/user");
+			} else {
+				throw new Error(res.error);
+			}
 		} catch (error) {
 			console.log(error);
+			setWarning(error.message);
 		}
-	}, [formData]);
+	}, [formData, router]);
 
 	const register = useCallback(async () => {
+		setLoading(true);
 		try {
-			await axios.post("/api/register", formData, {
+			const res = await axios.post("/api/register", formData, {
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
-			login();
+			if (res.ok) {
+				login();
+			} else {
+				throw new Error(res.error);
+			}
 		} catch (error) {
 			console.log(error);
+			setWarning(error.response.data.error);
 		}
+		setLoading(false);
 	}, [formData, login]);
 
 	return (
@@ -70,13 +87,13 @@ export default function AuthModal({ setShowModal }) {
 				<div className={styles.header}>
 					<button
 						style={{ color: formType === "login" && "var(--cl-accent)" }}
-						onClick={() => setFormType("login")}
+						onClick={() => handleChangeFormType("login")}
 					>
 						Login
 					</button>
 					<button
 						style={{ color: formType === "register" && "var(--cl-accent)" }}
-						onClick={() => setFormType("register")}
+						onClick={() => handleChangeFormType("register")}
 					>
 						Cadastro
 					</button>
@@ -94,11 +111,30 @@ export default function AuthModal({ setShowModal }) {
 						id="password"
 						onChange={handleChange}
 					/>
-					<PrimaryBtn type="submit" onClick={handleSubmit} style={{ width: "30%" }}>
+					<p className={styles.warning}>{warning}</p>
+					<PrimaryBtn
+						type="submit"
+						onClick={handleSubmit}
+						style={{ width: "30%", marginTop: "1.5rem", position: "relative" }}
+					>
 						{formType === "login" ? "Login" : "Cadastro"}
 					</PrimaryBtn>
 				</form>
-				<p>
+
+				<div
+					className={styles.socialLoginWrapper}
+					style={
+						formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
+					}
+				>
+					<button>
+						<FcGoogle />
+					</button>
+					<button>
+						<IoLogoGithub />
+					</button>
+				</div>
+				<p className={styles.disclaimer}>
 					* Esta é uma aplicação de estudos. Todos os dados serão deletados em 7 dias
 					a partir do registro.
 				</p>

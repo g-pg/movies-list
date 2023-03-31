@@ -8,6 +8,10 @@ export default async function handler(req, res) {
 
 	try {
 		const { userName, password } = req.body;
+
+		if (!userName || !password) {
+			return res.status(401).json({ error: "É preciso preencher o usuário e a senha." });
+		}
 		const existingUser = await prismadb.user.findUnique({
 			where: {
 				userName,
