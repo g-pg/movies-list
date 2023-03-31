@@ -4,8 +4,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { IoMdClose } from "react-icons/io";
 import styles from "./AuthModal.module.css";
 
 export default function AuthModal({ setShowModal }) {
@@ -102,7 +103,7 @@ export default function AuthModal({ setShowModal }) {
 					a partir do registro.
 				</p>
 				<button onClick={() => setShowModal(false)} className={styles.closeBtn}>
-					<FontAwesomeIcon icon={faXmark} style={{ fontSize: "1.8rem" }} />
+					<IoMdClose style={{ fontSize: "1.8rem" }} />
 				</button>
 			</div>
 			<div className={styles.overlay} onClick={() => setShowModal(false)}></div>
