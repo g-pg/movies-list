@@ -1,11 +1,15 @@
+import React, { useCallback, useState } from "react";
+import { signIn } from "next-auth/react";
+import axios from "axios";
+import { useRouter } from "next/router";
+
 import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
-import React, { useCallback, useEffect, useState } from "react";
-import styles from "./AuthModal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import styles from "./AuthModal.module.css";
 
 export default function AuthModal({ setShowModal }) {
+	const router = useRouter();
 	const [formType, setFormType] = useState("login");
 
 	const [formData, setFormData] = useState({
@@ -31,23 +35,33 @@ export default function AuthModal({ setShowModal }) {
 	}
 
 	const login = useCallback(async () => {
-		const { userName, password } = formData;
-		console.log("login");
+		// const { userName, password } = formData;
+		try {
+			await signIn("credentials", {
+				userName: formData.userName,
+				password: formData.password,
+				redirect: false,
+			});
+
+			router.push("/user");
+			console.log("loguei!");
+		} catch (error) {
+			console.log(error);
+		}
 	}, [formData]);
 
 	const register = useCallback(async () => {
-		const { userName, password } = formData;
-
 		try {
 			await axios.post("/api/register", formData, {
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
+			login();
 		} catch (error) {
 			console.log(error);
 		}
-	}, [formData]);
+	}, [formData, login]);
 
 	return (
 		<>
