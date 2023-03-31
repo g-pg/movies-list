@@ -69,9 +69,10 @@ export default function AuthModal({ setShowModal }) {
 					"Content-Type": "application/json",
 				},
 			});
-			if (res.ok) {
+			if (res.status == 200) {
 				login();
 			} else {
+				console.log(res);
 				throw new Error(res.error);
 			}
 		} catch (error) {
