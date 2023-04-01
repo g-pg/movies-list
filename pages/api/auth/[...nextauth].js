@@ -9,6 +9,7 @@ import prismadb from "@/lib/prismadb";
 
 export const authOptions = {
 	// Configure one or more authentication providers
+	adapter: PrismaAdapter(prismadb),
 	providers: [
 		GithubProvider({
 			clientId: process.env.GITHUB_ID || "",
@@ -16,7 +17,7 @@ export const authOptions = {
 		}),
 		GoogleProvider({
 			clientId: process.env.GOOGLE_ID || "",
-			clientSecret: process.env.GOOGLE_CLIENT_ID || "",
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
 		}),
 		Credentials({
 			id: "credentials",
@@ -65,7 +66,7 @@ export const authOptions = {
 	// },
 
 	debug: process.env.NODE_ENV === "development",
-	adapter: PrismaAdapter(prismadb),
+
 	session: {
 		strategy: "jwt",
 	},
