@@ -4,8 +4,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { IoMdClose, IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import styles from "./AuthModal.module.css";
@@ -43,13 +41,13 @@ export default function AuthModal({ setShowModal }) {
 	}
 
 	const login = useCallback(async () => {
-		// const { userName, password } = formData;
 		try {
 			const res = await signIn("credentials", {
 				userName: formData.userName,
 				password: formData.password,
 				redirect: false,
 			});
+			console.log("res", res);
 			if (res.ok) {
 				router.push("/user");
 			} else {
@@ -62,24 +60,17 @@ export default function AuthModal({ setShowModal }) {
 	}, [formData, router]);
 
 	const register = useCallback(async () => {
-		setLoading(true);
 		try {
-			const res = await axios.post("/api/register", formData, {
+			await axios.post("/api/register", formData, {
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
-			if (res.status == 200) {
-				login();
-			} else {
-				console.log(res);
-				throw new Error(res.error);
-			}
+			login();
 		} catch (error) {
 			console.log(error);
 			setWarning(error.response.data.error);
 		}
-		setLoading(false);
 	}, [formData, login]);
 
 	return (
