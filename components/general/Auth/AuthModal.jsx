@@ -122,7 +122,7 @@ export default function AuthModal({ setShowModal }) {
 					<button>
 						<FcGoogle />
 					</button>
-					<button>
+					<button onClick={() => signIn("github", { callbackUrl: "/" })}>
 						<IoLogoGithub />
 					</button>
 				</div>
