@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -10,6 +10,7 @@ import styles from "./AuthModal.module.css";
 
 export default function AuthModal({ setShowModal }) {
 	const router = useRouter();
+
 	const [loading, setLoading] = useState(false);
 	const [warning, setWarning] = useState("");
 	const [formType, setFormType] = useState("login");
@@ -119,10 +120,10 @@ export default function AuthModal({ setShowModal }) {
 						formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
 					}
 				>
-					<button onClick={() => signIn("google", { callbackUrl: "/" })}>
+					<button onClick={() => signIn("google", { callbackUrl: "/user" })}>
 						<FcGoogle />
 					</button>
-					<button onClick={() => signIn("github", { callbackUrl: "/" })}>
+					<button onClick={() => signIn("github", { callbackUrl: "/user" })}>
 						<IoLogoGithub />
 					</button>
 				</div>
