@@ -6,11 +6,11 @@ export default function TestPage() {
 	const [userFound, setUserFound] = useState("");
 	async function findUser(user) {
 		try {
-			const url = `../api/test?email=${user}`;
+			const url = `../api/test?userName=${user}`;
 			const res = await fetch(url);
 			const data = await res.json();
 			if (res.ok) {
-				setUserFound(data.email);
+				setUserFound(data.userName);
 			} else {
 				throw new Error(data.error);
 			}

@@ -119,7 +119,7 @@ export default function AuthModal({ setShowModal }) {
 						formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
 					}
 				>
-					<button>
+					<button onClick={() => signIn("google", { callbackUrl: "/" })}>
 						<FcGoogle />
 					</button>
 					<button onClick={() => signIn("github", { callbackUrl: "/" })}>

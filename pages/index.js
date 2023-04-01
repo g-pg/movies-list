@@ -32,7 +32,7 @@ export default function Home({ popularMovies }) {
 			<main>
 				<PrimaryLayout>
 					<HeroSection setShowModal={setShowModal} />
-					<Slider popularMovies={popularMovies} style={{ marginTop: "8rem" }} />
+					{/* <Slider popularMovies={popularMovies} style={{ marginTop: "8rem" }} /> */}
 				</PrimaryLayout>
 				{showModal && <AuthModal setShowModal={setShowModal} />}
 			</main>

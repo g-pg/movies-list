@@ -2,13 +2,13 @@ import prismadb from "@/lib/prismadb";
 
 export default async function handler(req, res) {
 	if (req.method === "GET") {
-		// get user by email
+		// get user by userName
 		try {
-			const { email } = req.query;
+			const { userName } = req.query;
 
 			const user = await prismadb.user.findUnique({
 				where: {
-					email: email,
+					userName: userName,
 				},
 			});
 
