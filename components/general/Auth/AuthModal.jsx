@@ -34,10 +34,8 @@ export default function AuthModal({ setShowModal }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		if (formType === "register") {
-			console.log("registrando");
 			register();
 		} else if (formType === "login") {
-			console.log("logando");
 			login();
 		}
 	}
@@ -92,7 +90,7 @@ export default function AuthModal({ setShowModal }) {
 						Cadastro
 					</button>
 				</div>
-				<form>
+				<form onSubmit={handleSubmit}>
 					{formType === "register" && (
 						<input
 							type="text"
@@ -122,20 +120,15 @@ export default function AuthModal({ setShowModal }) {
 					>
 						{warning}
 					</p>
-					{/* <button type="submit">Enviar</button> */}
-					<PrimaryBtn
-						type="submit"
-						onSubmit={handleSubmit}
-						style={{ width: "30%", marginTop: "0.5rem" }}
-					>
+					<PrimaryBtn type="submit" style={{ width: "30%", marginTop: "0.5rem" }}>
 						{formType === "login" ? "Login" : "Cadastro"}
 					</PrimaryBtn>
 				</form>
 				<div
 					className={styles.socialLoginWrapper}
-					style={
-						formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
-					}
+					// style={
+					// 	formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
+					// }
 				>
 					<button onClick={() => signIn("google", { callbackUrl: "/user" })}>
 						<FcGoogle />
