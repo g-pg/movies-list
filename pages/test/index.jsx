@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function TestPage() {
@@ -41,6 +41,10 @@ export default function TestPage() {
 			console.log(error);
 		}
 	}
+
+	function handleSignOut() {
+		signOut({ callbackUrl: "/" });
+	}
 	return (
 		<>
 			<div className="wrapper">
@@ -56,6 +60,7 @@ export default function TestPage() {
 						User found: <span style={{ color: "red" }}>{userFound}</span>
 					</p>
 				</div>
+				<button onClick={handleSignOut}>Sign Out</button>
 			</div>
 
 			<style jsx>{`

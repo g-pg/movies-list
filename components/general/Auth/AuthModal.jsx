@@ -92,13 +92,14 @@ export default function AuthModal({ setShowModal }) {
 						Cadastro
 					</button>
 				</div>
-				<form action="">
+				<form>
 					{formType === "register" && (
 						<input
 							type="text"
 							placeholder="Nome"
 							id="name"
 							onChange={handleChange}
+							required
 						/>
 					)}
 					<input
@@ -106,12 +107,14 @@ export default function AuthModal({ setShowModal }) {
 						placeholder="E-mail"
 						id="email"
 						onChange={handleChange}
+						required
 					/>
 					<input
 						type="password"
 						placeholder="Senha"
 						id="password"
 						onChange={handleChange}
+						required
 					/>
 					<p
 						style={{ opacity: warning !== "warning" ? "1" : "0" }}
@@ -119,15 +122,15 @@ export default function AuthModal({ setShowModal }) {
 					>
 						{warning}
 					</p>
+					{/* <button type="submit">Enviar</button> */}
 					<PrimaryBtn
 						type="submit"
-						onClick={handleSubmit}
+						onSubmit={handleSubmit}
 						style={{ width: "30%", marginTop: "0.5rem" }}
 					>
 						{formType === "login" ? "Login" : "Cadastro"}
 					</PrimaryBtn>
 				</form>
-
 				<div
 					className={styles.socialLoginWrapper}
 					style={

@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function PrimaryBtn({ children, style, onClick, type }) {
+export default function PrimaryBtn({ children, style, onClick, type, onSubmit }) {
 	return (
 		<>
-			<button style={style} onClick={onClick} type={type}>
+			<button style={style} onClick={onClick} type={type} onSubmit={onSubmit}>
 				{children}
 			</button>
 			<style jsx>
