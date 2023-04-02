@@ -7,26 +7,27 @@ export default async function handler(req, res) {
 	}
 
 	try {
-		const { userName, password } = req.body;
+		const { name, email, password } = req.body;
 
-		if (!userName || !password) {
-			return res.status(401).json({ error: "É preciso preencher o usuário e a senha." });
+		if (!name || !password || !email) {
+			return res.status(401).json({ error: "É preciso preencher todos os campos." });
 		}
 		const existingUser = await prismadb.user.findUnique({
 			where: {
-				userName,
+				email,
 			},
 		});
 
 		if (existingUser) {
-			return res.status(422).json({ error: "Este usuário já existe." });
+			return res.status(422).json({ error: "Este e-mail já foi cadastrado." });
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 12);
 
 		const user = await prismadb.user.create({
 			data: {
-				userName,
+				name,
+				email,
 				hashedPassword,
 			},
 		});

@@ -23,8 +23,8 @@ export const authOptions = {
 			id: "credentials",
 			name: "credentials",
 			credentials: {
-				userName: {
-					label: "Usuário",
+				email: {
+					label: "E-mail",
 					type: "text",
 				},
 				password: {
@@ -33,13 +33,13 @@ export const authOptions = {
 				},
 			},
 			async authorize(credentials) {
-				if (!credentials.userName || !credentials.password) {
+				if (!credentials.email || !credentials.password) {
 					throw new Error("É preciso preencher o usuário e a senha.");
 				}
 
 				const user = await prismadb.user.findUnique({
 					where: {
-						userName: credentials.userName,
+						email: credentials.email,
 					},
 				});
 

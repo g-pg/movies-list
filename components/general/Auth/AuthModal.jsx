@@ -12,16 +12,17 @@ export default function AuthModal({ setShowModal }) {
 	const router = useRouter();
 
 	const [loading, setLoading] = useState(false);
-	const [warning, setWarning] = useState("");
+	const [warning, setWarning] = useState("warning");
 	const [formType, setFormType] = useState("login");
 
 	const [formData, setFormData] = useState({
-		userName: "",
+		name: "",
+		email: "",
 		password: "",
 	});
 
 	function handleChangeFormType(type) {
-		setWarning("");
+		setWarning("warning");
 		setFormType(type);
 	}
 	function handleChange(e) {
@@ -44,7 +45,7 @@ export default function AuthModal({ setShowModal }) {
 	const login = useCallback(async () => {
 		try {
 			const res = await signIn("credentials", {
-				userName: formData.userName,
+				email: formData.email,
 				password: formData.password,
 				redirect: false,
 			});
@@ -92,10 +93,18 @@ export default function AuthModal({ setShowModal }) {
 					</button>
 				</div>
 				<form action="">
+					{formType === "register" && (
+						<input
+							type="text"
+							placeholder="Nome"
+							id="name"
+							onChange={handleChange}
+						/>
+					)}
 					<input
-						type="text"
-						placeholder="Usuário"
-						id="userName"
+						type="email"
+						placeholder="E-mail"
+						id="email"
 						onChange={handleChange}
 					/>
 					<input
@@ -104,11 +113,16 @@ export default function AuthModal({ setShowModal }) {
 						id="password"
 						onChange={handleChange}
 					/>
-					<p className={styles.warning}>{warning}</p>
+					<p
+						style={{ opacity: warning !== "warning" ? "1" : "0" }}
+						className={styles.warning}
+					>
+						{warning}
+					</p>
 					<PrimaryBtn
 						type="submit"
 						onClick={handleSubmit}
-						style={{ width: "30%", marginTop: "1.5rem", position: "relative" }}
+						style={{ width: "30%", marginTop: "0.5rem" }}
 					>
 						{formType === "login" ? "Login" : "Cadastro"}
 					</PrimaryBtn>

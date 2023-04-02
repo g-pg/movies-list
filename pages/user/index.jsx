@@ -1,6 +1,6 @@
 import React from "react";
 import { getSession, signOut } from "next-auth/react";
-
+import useCurrentUser from "@/hooks/useCurrentUser";
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
 
@@ -18,10 +18,12 @@ export async function getServerSideProps(context) {
 	};
 }
 
-export default function index() {
+export default function UserPage() {
+	const { data: user } = useCurrentUser();
+	console.log(user);
 	return (
 		<>
-			<p>user page</p>
+			<p>Olá, {user?.name || user?.userName}!</p>
 			<button onClick={() => signOut()}>Sign out</button>
 		</>
 	);
