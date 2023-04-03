@@ -10,9 +10,6 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-
-
-
     background: var(--cl-bg);
     padding: 1rem;
     border: 1px solid var(--cl-accent);

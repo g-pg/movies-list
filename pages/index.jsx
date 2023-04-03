@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import Loading from "@/components/general/Loading/Loading";
+import useShowModal from "@/hooks/useShowModal";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;
@@ -23,7 +24,8 @@ export async function getStaticProps() {
 }
 
 export default function Home({ popularMovies }) {
-	const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useShowModal();
+
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
 	const router = useRouter();
 
@@ -63,9 +65,9 @@ export default function Home({ popularMovies }) {
 			<main>
 				<PrimaryLayout>
 					<HeroSection setShowModal={setShowModal} />
+
 					<Slider popularMovies={popularMovies} />
 				</PrimaryLayout>
-
 				{showModal && <AuthModal setShowModal={setShowModal} />}
 			</main>
 
