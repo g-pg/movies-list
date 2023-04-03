@@ -4,11 +4,11 @@ export default async function handler(req, res) {
 	if (req.method === "GET") {
 		// get user by userName
 		try {
-			const { userName } = req.query;
+			const { email } = req.query;
 
 			const user = await prismadb.user.findUnique({
 				where: {
-					userName: userName,
+					email: email,
 				},
 			});
 

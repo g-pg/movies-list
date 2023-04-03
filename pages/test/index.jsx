@@ -1,21 +1,25 @@
 import React, { use, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import fetcher from "@/lib/fetcher";
 
 export default function TestPage() {
 	const [user, setUser] = useState("");
 	const [userFound, setUserFound] = useState("");
 	async function findUser(user) {
 		try {
-			const url = `../api/test?userName=${user}`;
-			const res = await fetch(url);
-			const data = await res.json();
-			if (res.ok) {
-				setUserFound(data.userName);
-			} else {
-				throw new Error(data.error);
-			}
+			const url = `../api/test?email=${user}`;
+			// const res = await fetch(url);
+			// const data = await res.json();
+
+			const data = await fetcher(url);
+			console.log(data);
+			// if (data.ok) {
+			setUserFound(data.email);
+			// } else {
+			// throw new Error(data.error);
+			// }
 		} catch (error) {
-			setUserFound(error.message);
+			setUserFound(error.response.data.error);
 			console.log(error);
 		}
 	}
