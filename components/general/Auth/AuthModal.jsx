@@ -7,11 +7,12 @@ import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
 import { IoMdClose, IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import styles from "./AuthModal.module.css";
+import Loading from "../Loading/Loading";
 
 export default function AuthModal({ setShowModal }) {
 	const router = useRouter();
 
-	const [loading, setLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [warning, setWarning] = useState("warning");
 	const [formType, setFormType] = useState("login");
 
@@ -42,12 +43,12 @@ export default function AuthModal({ setShowModal }) {
 
 	const login = useCallback(async () => {
 		try {
+			setIsLoading(true);
 			const res = await signIn("credentials", {
 				email: formData.email,
 				password: formData.password,
 				redirect: false,
 			});
-			console.log("res", res);
 			if (res.ok) {
 				router.push("/user");
 			} else {
@@ -57,6 +58,7 @@ export default function AuthModal({ setShowModal }) {
 			console.log(error);
 			setWarning(error.message);
 		}
+		setIsLoading(false);
 	}, [formData, router]);
 
 	const register = useCallback(async () => {

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getSession, signOut } from "next-auth/react";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import Loading from "@/components/general/Loading/Loading";
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
 
@@ -19,11 +20,15 @@ export async function getServerSideProps(context) {
 }
 
 export default function UserPage() {
-	const { data: user } = useCurrentUser();
-	console.log(user);
+	const { data: user, isLoading } = useCurrentUser();
+
+	if (isLoading) {
+		return <Loading />;
+	}
+
 	return (
 		<>
-			<p>Olá, {user?.name || user?.userName}!</p>
+			<p>Olá, {user.name}!</p>
 			<button onClick={() => signOut()}>Sign out</button>
 		</>
 	);
