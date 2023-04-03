@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
+import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import { IoMdClose, IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import styles from "./AuthModal.module.css";

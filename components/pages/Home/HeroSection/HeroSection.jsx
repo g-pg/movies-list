@@ -1,5 +1,5 @@
 import styles from "./HeroSection.module.css";
-import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
+import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import Image from "next/image";
 import classNames from "classnames";
 

@@ -4,13 +4,13 @@ import Footer from "../Footer/Footer";
 export default function PrimaryLayout({ children }) {
 	return (
 		<>
-			<div className="big-container">
+			<div>
 				<Header />
 				{children}
 				<Footer />
 
 				<style jsx>{`
-					.big-container {
+					div {
 						display: flex;
 						flex-direction: column;
 						min-height: 100vh;

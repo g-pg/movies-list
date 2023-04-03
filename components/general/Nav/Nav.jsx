@@ -1,4 +1,4 @@
-import PrimaryBtn from "@components/PrimaryBtn/PrimaryBtn";
+import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState } from "react";
 import AuthModal from "../Auth/AuthModal";
