@@ -7,6 +7,12 @@
     width: 70%;
 }
 
+@media (max-width: 780px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
 .column {
     display: flex;
     align-items: center;
