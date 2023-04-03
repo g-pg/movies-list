@@ -24,6 +24,7 @@
     "swr": "^2.1.1"
   },
   "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
     "prisma": "^4.12.0"
   }
 }
