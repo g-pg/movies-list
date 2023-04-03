@@ -1,4 +1,3 @@
-import Header from "@components/general/Header/Header";
 import PrimaryLayout from "@components/general/PrimaryLayout/PrimaryLayout";
 import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
@@ -7,6 +6,7 @@ import AuthModal from "@components/general/Auth/AuthModal";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
+import Loading from "@/components/general/Loading/Loading";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;
@@ -24,18 +24,20 @@ export async function getStaticProps() {
 
 export default function Home({ popularMovies }) {
 	const [showModal, setShowModal] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(true);
 	const router = useRouter();
 
-	async function handleAuthenticated() {
-		const session = await getSession();
-		if (session) {
-			router.push("/user");
-		} else {
-			console.log("não há sessão");
-		}
-	}
-
 	useEffect(() => {
+		async function handleAuthenticated() {
+			const session = await getSession();
+			if (session) {
+				router.push("/user");
+			} else {
+				setIsAuthenticated(false);
+				console.log("não há sessão");
+			}
+		}
+
 		handleAuthenticated();
 	}, []);
 
@@ -45,6 +47,11 @@ export default function Home({ popularMovies }) {
 			setShowModal(true);
 		}
 	}, [router.query.auth]);
+
+	if (isAuthenticated) {
+		return <Loading />;
+	}
+
 	return (
 		<>
 			<Head>
