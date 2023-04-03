@@ -6,6 +6,7 @@ import Head from "next/head";
 import AuthModal from "@components/general/Auth/AuthModal";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;
@@ -20,9 +21,23 @@ export async function getStaticProps() {
 		},
 	};
 }
+
 export default function Home({ popularMovies }) {
 	const [showModal, setShowModal] = useState(false);
 	const router = useRouter();
+
+	async function handleAuthenticated() {
+		const session = await getSession();
+		if (session) {
+			router.push("/user");
+		} else {
+			console.log("não há sessão");
+		}
+	}
+
+	useEffect(() => {
+		handleAuthenticated();
+	}, []);
 
 	useEffect(() => {
 		console.log(router.query.auth);
