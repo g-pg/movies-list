@@ -1,6 +1,7 @@
 :root {
     /* Dark */
     --cl-bg: #0f0f0f;
+    --cl-bg: black;
     --cl-accent: #F72585;
     --cl-sec-accent: #3A0CA3;
     --cl-main-text: #FFFFFF;
