@@ -48,7 +48,7 @@ export default function Home({ popularMovies }) {
 		if (router.query.auth == "true") {
 			setShowModal(true);
 		}
-	}, [router.query.auth]);
+	}, [router.query.auth, setShowModal]);
 
 	if (isAuthenticated) {
 		return <Loading />;

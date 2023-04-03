@@ -34,6 +34,7 @@ export default function AuthModal({ setShowModal }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		setIsLoading(true);
 		if (formType === "register") {
 			register();
 		} else if (formType === "login") {
@@ -73,11 +74,13 @@ export default function AuthModal({ setShowModal }) {
 			console.log(error);
 			setWarning(error.response.data.error);
 		}
+		setIsLoading(false);
 	}, [formData, login]);
 
 	return (
 		<>
 			<div className={styles.modalWrapper}>
+				{isLoading && <Loading />}
 				<div className={styles.header}>
 					<button
 						style={{ color: formType === "login" && "var(--cl-accent)" }}
