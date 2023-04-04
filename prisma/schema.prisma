@@ -20,7 +20,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   moviesSeen String[] 
-  movesToSee String[]
+  moviesToSee String[]
   sessions Session[]
   accounts Account[]
 
