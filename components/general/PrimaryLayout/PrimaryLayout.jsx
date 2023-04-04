@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-export default function PrimaryLayout({ children }) {
+export default function PrimaryLayout({ children, user }) {
 	return (
 		<>
 			<div>
-				<Header />
+				<Header user={user} />
 				{children}
 				<Footer />
 

@@ -9,3 +9,31 @@
     color: var(--cl-accent);
     text-decoration: none;
 }
+
+.nav ul a:hover {
+    color: var(--cl-sec-accent);
+}
+
+.avatar {
+    border-radius: 100vw;
+    border: 2px solid var(--cl-accent);
+    width: 40px;
+    height: 40px;
+    background: var(--cl-accent);
+    position: relative;
+}
+
+.avatar img {
+    border-radius: 100vw;
+}
+
+.avatar p {
+    color: var(--cl-text);
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-weight: 800;
+}

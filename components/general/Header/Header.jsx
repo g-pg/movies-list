@@ -1,13 +1,16 @@
+import Link from "next/link";
 import Nav from "../Nav/Nav";
 // import styles from "./Header.module.css";
 
-export default function Header() {
+export default function Header({ user }) {
 	return (
 		<>
 			<header>
 				<div className="container header-wrapper">
-					<h1>Muvi</h1>
-					<Nav />
+					<Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+						<h1>Muvi</h1>
+					</Link>
+					<Nav user={user} />
 				</div>
 			</header>
 
