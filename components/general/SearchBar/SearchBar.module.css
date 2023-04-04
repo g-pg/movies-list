@@ -1,0 +1,29 @@
+.wrapper {
+    max-width: 600px;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wrapper input {
+
+    width: 100%;
+    align-self: center;
+    background: none;
+    border-radius: 16px;
+    border: 1px solid var(--cl-accent);
+    color: var(--cl-text);
+    padding: 0.5rem 1rem;
+
+
+}
+
+.magnifier {
+    top: 12px;
+    right: 15px;
+    position: absolute;
+}
+
+.wrapper input:focus~.magnifier {
+    color: var(--cl-accent)
+}
