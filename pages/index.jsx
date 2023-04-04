@@ -28,29 +28,12 @@ export default function Home({ popularMovies }) {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 
-	// const [isAuthenticated, setIsAuthenticated] = useState(true);
-
-	// useEffect(() => {
-	// 	async function handleAuthenticated() {
-	// 		const session = await getSession();
-	// 		if (session) {
-	// 			router.push("/user");
-	// 		} else {
-	// 			setIsAuthenticated(false);
-	// 			;
-	// 		}
-	// 	}
-
-	// 	handleAuthenticated();
-	// }, []);
-
 	useEffect(() => {
 		if (router.query.auth == "true") {
 			setShowModal(true);
 		}
 	}, [router.query.auth, setShowModal]);
 
-	useEffect(() => {}, [status]);
 	if (status === "loading") {
 		return <Loading />;
 	} else if (status === "authenticated") {
@@ -58,9 +41,6 @@ export default function Home({ popularMovies }) {
 		return <Loading />;
 	}
 
-	// if (isAuthenticated) {
-	// 	return <Loading />;
-	// }
 	return (
 		<>
 			<Head>
