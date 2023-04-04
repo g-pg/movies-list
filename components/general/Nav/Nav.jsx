@@ -15,6 +15,7 @@ export default function Nav() {
 					<li>
 						<a href="#">Sobre</a>
 					</li>
+
 					<li>
 						<PrimaryBtn
 							style={{ padding: "0.3rem 0.8rem" }}

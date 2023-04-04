@@ -12,7 +12,6 @@ export default function TestPage() {
 			// const data = await res.json();
 
 			const data = await fetcher(url);
-			console.log(data);
 			// if (data.ok) {
 			setUserFound(data.email);
 			// } else {
@@ -20,7 +19,6 @@ export default function TestPage() {
 			// }
 		} catch (error) {
 			setUserFound(error.response.data.error);
-			console.log(error);
 		}
 	}
 
@@ -37,13 +35,10 @@ export default function TestPage() {
 			});
 			if (res.status == 200) {
 				const data = await res.json();
-				console.log(data.message);
 			} else {
 				throw new Error(data.error);
 			}
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	function handleSignOut() {

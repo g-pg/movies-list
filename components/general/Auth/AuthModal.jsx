@@ -56,7 +56,6 @@ export default function AuthModal({ setShowModal }) {
 				throw new Error(res.error);
 			}
 		} catch (error) {
-			console.log(error);
 			setWarning(error.message);
 		}
 		setIsLoading(false);
@@ -71,7 +70,6 @@ export default function AuthModal({ setShowModal }) {
 			});
 			login();
 		} catch (error) {
-			console.log(error);
 			setWarning(error.response.data.error);
 		}
 		setIsLoading(false);
