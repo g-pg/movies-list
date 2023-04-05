@@ -22,6 +22,8 @@
     top: 12px;
     right: 15px;
     position: absolute;
+    width: 16px;
+    height: 16px;
 }
 
 .wrapper input:focus~.magnifier {

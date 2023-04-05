@@ -33,7 +33,7 @@ export default function UserPage() {
 	const { data: user, isLoading } = useCurrentUser();
 
 	const [searchQuery, setSearchQuery] = useState("");
-
+	const [searchingMovies, setSearchingMovies] = useState(false);
 	const [queryMoviesList, setQueryMoviesList] = useState([]);
 	function handleChange(e) {
 		setSearchQuery(e.target.value);
@@ -44,17 +44,23 @@ export default function UserPage() {
 		const amountToShow = 10;
 
 		const searchMovieByName = debounce(async () => {
-			const res = await fetch(`../api/searchmovie?name=${query}`);
-			const data = await res.json();
+			try {
+				setSearchingMovies(true);
+				const res = await fetch(`../api/searchmovie?name=${query}`);
+				const data = await res.json();
 
-			let firstNMovies = [];
+				let firstNMovies = [];
 
-			for (let i = 0; i < amountToShow && i < data.results.length; i++) {
-				firstNMovies.push(data.results[i]);
+				for (let i = 0; i < amountToShow && i < data.results.length; i++) {
+					firstNMovies.push(data.results[i]);
+				}
+
+				setQueryMoviesList(firstNMovies);
+				setSearchingMovies(false);
+				console.log(firstNMovies);
+			} catch (error) {
+				console.log(error);
 			}
-
-			setQueryMoviesList(firstNMovies);
-			console.log(firstNMovies);
 		}, 500);
 
 		console.log(query);
@@ -96,7 +102,12 @@ export default function UserPage() {
 				<div className="container wrapper">
 					<PageTitle>Olá, {user?.name}!</PageTitle>
 					<div className={"search-box"}>
-						<SearchBar onChange={handleChange} value={searchQuery} />
+						<SearchBar
+							onChange={handleChange}
+							value={searchQuery}
+							loading={searchingMovies}
+						/>
+
 						{queryMoviesList.length > 0 && <QueryBox list={queryMoviesList} />}
 					</div>
 					{/* <button onClick={() => addMovie()}>Add movie</button>
