@@ -1,17 +1,19 @@
 import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AuthModal from "../Auth/AuthModal";
 import styles from "./Nav.module.css";
-import useShowModal from "@/hooks/useShowModal";
 import Image from "next/image";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Link from "next/link";
-
+import { AuthModalContext } from "@/context/AuthModalContext";
 export default function Nav() {
-	const [showModal, setShowModal] = useShowModal();
+	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
 	const { data: session } = useSession();
-	const { data: user } = useCurrentUser();
+	const user = session ? session?.user : null;
+	// let user;
+	// if (session) user = session.user;
+
 	return (
 		<>
 			<nav className={styles.nav}>
@@ -38,7 +40,7 @@ export default function Nav() {
 						) : (
 							<PrimaryBtn
 								style={{ padding: "0.3rem 0.8rem" }}
-								onClick={() => setShowModal((prev) => !prev)}
+								onClick={() => setShowAuthModal((prev) => !prev)}
 							>
 								Login
 							</PrimaryBtn>
@@ -46,8 +48,6 @@ export default function Nav() {
 					</li>
 				</ul>
 			</nav>
-
-			{showModal && <AuthModal setShowModal={setShowModal} />}
 		</>
 	);
 }

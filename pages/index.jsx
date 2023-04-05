@@ -3,11 +3,11 @@ import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
 import Head from "next/head";
 import AuthModal from "@components/general/Auth/AuthModal";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { getSession, useSession } from "next-auth/react";
 import Loading from "@/components/general/Loading/Loading";
-import useShowModal from "@/hooks/useShowModal";
+import { AuthModalContext } from "@/context/AuthModalContext";
 
 export async function getStaticProps() {
 	const KEY = process.env.MOVIEDB_KEY;
@@ -24,15 +24,15 @@ export async function getStaticProps() {
 }
 
 export default function Home({ popularMovies }) {
-	const [showModal, setShowModal] = useShowModal();
+	const { setShowAuthModal } = useContext(AuthModalContext);
 	const { data: session, status } = useSession();
 	const router = useRouter();
 
 	useEffect(() => {
 		if (router.query.auth == "true") {
-			setShowModal(true);
+			setShowAuthModal(true);
 		}
-	}, [router.query.auth, setShowModal]);
+	}, [router.query.auth, setShowAuthModal]);
 
 	if (status === "loading") {
 		return <Loading />;
@@ -51,11 +51,10 @@ export default function Home({ popularMovies }) {
 			</Head>
 			<main>
 				<PrimaryLayout>
-					<HeroSection setShowModal={setShowModal} />
+					<HeroSection setShowAuthModal={setShowAuthModal} />
 
 					<Slider popularMovies={popularMovies} />
 				</PrimaryLayout>
-				{showModal && <AuthModal setShowModal={setShowModal} />}
 			</main>
 
 			<style jsx>{``}</style>

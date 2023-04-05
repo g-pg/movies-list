@@ -6,7 +6,7 @@ import classNames from "classnames";
 import gladiatorPoster from "@public/img/gladiator-poster.jpg";
 import matrixPoster from "@public/img/matrix-poster.jpg";
 
-export default function HeroSection({ setShowModal }) {
+export default function HeroSection({ setShowAuthModal }) {
 	return (
 		<section className={classNames(styles.section)}>
 			<div className={classNames(styles.wrapper, "container")}>
@@ -19,7 +19,7 @@ export default function HeroSection({ setShowModal }) {
 					</p>
 					<div className={styles.btn}>
 						<PrimaryBtn
-							onClick={() => setShowModal(true)}
+							onClick={() => setShowAuthModal(true)}
 							style={{ maxWidth: "200px", position: "relative" }}
 						>
 							Começar agora

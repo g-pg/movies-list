@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -8,8 +8,10 @@ import { IoMdClose, IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import styles from "./AuthModal.module.css";
 import Loading from "../Loading/Loading";
+import { AuthModalContext } from "@/context/AuthModalContext";
 
-export default function AuthModal({ setShowModal }) {
+export default function AuthModal() {
+	const { setShowAuthModal } = useContext(AuthModalContext);
 	const router = useRouter();
 
 	const [isLoading, setIsLoading] = useState(false);
@@ -52,6 +54,7 @@ export default function AuthModal({ setShowModal }) {
 			});
 			if (res.ok) {
 				router.push("/user");
+				setShowAuthModal(false);
 			} else {
 				throw new Error(res.error);
 			}
@@ -144,11 +147,11 @@ export default function AuthModal({ setShowModal }) {
 					* Esta é uma aplicação de estudos. Todos os dados serão deletados em 7 dias
 					a partir do registro.
 				</p>
-				<button onClick={() => setShowModal(false)} className={styles.closeBtn}>
+				<button onClick={() => setShowAuthModal(false)} className={styles.closeBtn}>
 					<IoMdClose style={{ fontSize: "1.8rem" }} />
 				</button>
 			</div>
-			<div className={styles.overlay} onClick={() => setShowModal(false)}></div>
+			<div className={styles.overlay} onClick={() => setShowAuthModal(false)}></div>
 		</>
 	);
 }
