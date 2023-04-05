@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import styles from "./QueryBox.module.css";
-export default function ActionBtn({ type, icon, href, action, content }) {
+import styles from "./SecondaryBtn.module.css";
+export default function SecondaryBtn({ type, icon, href, onClick, content }) {
 	if (type === "btn") {
 		return (
-			<button className={styles.btn} action={action}>
+			<button className={styles.btn} onClick={onClick}>
 				{icon}
 				{content}
 			</button>

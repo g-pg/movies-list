@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./QueryBox.module.css";
 import Image from "next/image";
-import ActionBtn from "./ActionBtn";
+import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward } from "react-icons/md";
 export default function QueryBox({ list }) {
 	console.log(list);
@@ -42,13 +42,13 @@ export default function QueryBox({ list }) {
 								<p>{sliceDescription(el.overview)}</p>
 							</div>
 							<div className={styles.actions}>
-								<ActionBtn
+								<SecondaryBtn
 									type="btn"
 									icon={<MdAddBox />}
 									// content="Adicionar"
 								/>
 
-								<ActionBtn
+								<SecondaryBtn
 									type="link"
 									content="Ler mais"
 									icon={<MdArrowForward />}
