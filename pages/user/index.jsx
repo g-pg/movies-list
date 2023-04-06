@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getSession, signOut } from "next-auth/react";
+
 import useCurrentUser from "@/hooks/useCurrentUser";
 import Loading from "@/components/general/Loading/Loading";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 import PrimaryLayout from "@/components/general/PrimaryLayout/PrimaryLayout";
-import axios from "axios";
+
 import PageTitle from "@/components/general/PageTitle/PageTitle";
 import SearchBar from "@/components/general/SearchBar/SearchBar";
 import { debounce } from "lodash";
-import Image from "next/image";
+
 import QueryBox from "@/components/pages/User/QueryBox/QueryBox";
 import useClickOutside from "@/hooks/useClickOutside";
 
@@ -32,6 +32,7 @@ export async function getServerSideProps(context) {
 
 export default function UserPage() {
 	const { data: user, isLoading } = useCurrentUser();
+	console.log(user);
 
 	const [showResults, setShowResults] = useState(false);
 	const { ref: queryBoxRef } = useClickOutside(setShowResults);
@@ -87,7 +88,7 @@ export default function UserPage() {
 		<>
 			<PrimaryLayout user={user}>
 				<div className="container wrapper">
-					<PageTitle>Olá, {user?.name}!</PageTitle>
+					<PageTitle>Olá, {user?.name.split(" ")[0]}!</PageTitle>
 					<div
 						className={"search-box"}
 						onClick={() => setShowResults(true)}
