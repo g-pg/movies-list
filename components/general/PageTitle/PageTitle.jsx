@@ -12,6 +12,12 @@ export default function PageTitle({ children, style }) {
 					text-align: center;
 					margin-bottom: 2rem;
 				}
+
+				@media (max-width: 768px) {
+					h2 {
+						font-size: 1.5rem;
+					}
+				}
 			`}</style>
 		</>
 	);
