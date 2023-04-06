@@ -26,12 +26,15 @@ export default function NavAvatar({ user }) {
 				)}
 			</button>
 			{showSettings && (
-				<div className={styles.settings}>
-					<div>
-						<p className={styles.name}>{user.name}</p>
-						<p>{user.email}</p>
+				<div className={styles.settingsWrapper}>
+					<div className={styles.settings}>
+						<div>
+							<p className={styles.name}>{user.name}</p>
+							<p>{user.email}</p>
+						</div>
+						<NavSettings />
 					</div>
-					<NavSettings />
+					<div className={styles.overlay}></div>
 				</div>
 			)}
 		</div>

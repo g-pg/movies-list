@@ -11,6 +11,7 @@
     background: var(--cl-accent);
     position: relative;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .avatar img {
@@ -39,8 +40,16 @@
     font-weight: 600;
 }
 
+.settingsWrapper {
+    position: relative;
+}
+
 .settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-width: 250px;
+    min-height: 180px;
     z-index: 1000;
     padding: 1.5rem;
     position: absolute;
@@ -49,5 +58,20 @@
     background: var(--cl-bg-lighter);
     border-radius: 8px;
     border: 1px solid var(--cl-accent);
+    -webkit-box-shadow: -1px 7px 19px 1px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: -1px 7px 19px 1px rgba(0, 0, 0, 0.7);
+    box-shadow: -1px 7px 19px 1px rgba(0, 0, 0, 0.7);
 
+}
+
+.overlay {
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    pointer-events: none;
 }

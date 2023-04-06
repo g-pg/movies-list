@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthModalContext } from "@/context/AuthModalContext";
+import { useEffect, useState } from "react";
+
 import Link from "next/link";
 
 import styles from "./Nav.module.css";
-import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 
 import classNames from "classnames";
 
 import Credits from "../Credits/Credits";
 import useClickOutside from "@/hooks/useClickOutside";
 export default function Nav({ user }) {
-	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
 	const homeLink = user ? "/user" : "/";
 	return (
 		<>
@@ -65,7 +63,9 @@ export function MobileNav({ user }) {
 			</button>
 			{/* {showBurger && ( */}
 			<div className={classNames(styles.burgerMenu, styles.active)}>
-				<Nav user={user} />
+				<div onClick={() => setShowBurger((prev) => !prev)}>
+					<Nav user={user} />
+				</div>
 				<div style={{ marginTop: "auto" }}>
 					<Credits />
 				</div>
