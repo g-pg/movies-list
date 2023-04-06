@@ -4,10 +4,7 @@ import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward } from "react-icons/md";
 export default function QueryBox({ list }) {
-	console.log(list);
 	function sliceDescription(text) {
-		console.log(text.length);
-
 		if (text.length > 130) {
 			let lastSpaceIndex = 0;
 			lastSpaceIndex = text.indexOf(" ", 115);
@@ -30,12 +27,19 @@ export default function QueryBox({ list }) {
 			{list.map((el) => {
 				return (
 					<div className={styles.movieBox} key={el.id}>
-						<Image
-							width="154"
-							height="231"
-							src={`https://image.tmdb.org/t/p/w154${el.poster_path}`}
-							alt={el.title}
-						/>
+						{el.poster_path ? (
+							<Image
+								className={styles.moviePoster}
+								width="154"
+								height="231"
+								src={`https://image.tmdb.org/t/p/w154${el.poster_path}`}
+								alt={el.title}
+							/>
+						) : (
+							<div className={styles.moviePoster}>
+								<p>Poster indisponível.</p>
+							</div>
+						)}
 						<div className={styles.content}>
 							<div className={styles.movieInfo}>
 								<h3>{el.title}</h3>
@@ -45,8 +49,8 @@ export default function QueryBox({ list }) {
 								<SecondaryBtn
 									as="btn"
 									icon={<MdAddBox />}
-									// content="Adicionar"
 									size="2rem"
+									style={{ color: "var(--cl-accent)" }}
 								/>
 
 								<SecondaryBtn

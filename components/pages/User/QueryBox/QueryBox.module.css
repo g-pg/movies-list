@@ -11,9 +11,11 @@
     max-height: 50vh;
 }
 
-.wrapper img {
+.moviePoster {
     max-width: 80px;
     height: auto;
+    font-size: 0.6rem;
+    text-align: center;
 }
 
 .movieBox {
@@ -25,7 +27,7 @@
 }
 
 .movieBox:not(:last-child) {
-    border-bottom: 1px solid var(--cl-main-text);
+    border-bottom: 1px solid var(--cl-light-grey);
 }
 
 .movieInfo {

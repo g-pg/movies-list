@@ -12,6 +12,7 @@ import SearchBar from "@/components/general/SearchBar/SearchBar";
 import { debounce } from "lodash";
 import Image from "next/image";
 import QueryBox from "@/components/pages/User/QueryBox/QueryBox";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
@@ -32,6 +33,8 @@ export async function getServerSideProps(context) {
 export default function UserPage() {
 	const { data: user, isLoading } = useCurrentUser();
 
+	const [showResults, setShowResults] = useState(false);
+	const { ref: queryBoxRef } = useClickOutside(setShowResults);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchingMovies, setSearchingMovies] = useState(false);
 	const [queryMoviesList, setQueryMoviesList] = useState([]);
@@ -55,9 +58,10 @@ export default function UserPage() {
 					firstNMovies.push(data.results[i]);
 				}
 
+				console.log(firstNMovies);
 				setQueryMoviesList(firstNMovies);
 				setSearchingMovies(false);
-				console.log(firstNMovies);
+				setShowResults(true);
 			} catch (error) {
 				console.log(error);
 			}
@@ -74,23 +78,6 @@ export default function UserPage() {
 			searchMovieByName.cancel();
 		};
 	}, [searchQuery]);
-	// const [moviesToSee, setMoviesToSee] = useState([]);
-
-	// useEffect(() => {
-	// 	async function getMoviesToSee() {
-	// 		const list = await axios.get("../api/movietosee");
-	// 		setMoviesToSee(list.data[0].moviesToSee);
-	// 	}
-	// 	getMoviesToSee();
-	// }, []);
-
-	// async function addMovie() {
-	// 	const movieId = "76341";
-	// 	try {
-	// 		const res = await axios.post("../api/movietosee", { movieId: movieId });
-	// 		setMoviesToSee((prev) => [...prev, movieId]);
-	// 	} catch (error) {}
-	// }
 
 	if (isLoading) {
 		return <Loading />;
@@ -101,17 +88,21 @@ export default function UserPage() {
 			<PrimaryLayout user={user}>
 				<div className="container wrapper">
 					<PageTitle>Olá, {user?.name}!</PageTitle>
-					<div className={"search-box"}>
+					<div
+						className={"search-box"}
+						onClick={() => setShowResults(true)}
+						ref={queryBoxRef}
+					>
 						<SearchBar
 							onChange={handleChange}
 							value={searchQuery}
 							loading={searchingMovies}
 						/>
 
-						{queryMoviesList.length > 0 && <QueryBox list={queryMoviesList} />}
+						{showResults && queryMoviesList.length > 0 && (
+							<QueryBox list={queryMoviesList} />
+						)}
 					</div>
-					{/* <button onClick={() => addMovie()}>Add movie</button>
-					<button onClick={() => signOut()}>Sign out</button> */}
 				</div>
 			</PrimaryLayout>
 			<style jsx>{`
