@@ -1,18 +1,16 @@
-import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useState, useEffect, useContext } from "react";
-import AuthModal from "../Auth/AuthModal";
-import styles from "./Nav.module.css";
-import Image from "next/image";
-import useCurrentUser from "@/hooks/useCurrentUser";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useContext } from "react";
 import { AuthModalContext } from "@/context/AuthModalContext";
+import Link from "next/link";
+
+import styles from "./Nav.module.css";
+import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
+import NavAvatar from "../NavAvatar/NavAvatar";
+
 export default function Nav() {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
 	const { data: session } = useSession();
 	const user = session ? session?.user : null;
-	// let user;
-	// if (session) user = session.user;
 
 	return (
 		<>
@@ -28,15 +26,7 @@ export default function Nav() {
 					)}
 					<li>
 						{user ? (
-							<Link href="/user">
-								<div className={styles.avatar}>
-									{user.image ? (
-										<Image src={user.image} alt={user.name} fill />
-									) : (
-										<p>{user.name[0]}</p>
-									)}
-								</div>
-							</Link>
+							<NavAvatar user={user} />
 						) : (
 							<PrimaryBtn
 								style={{ padding: "0.3rem 0.8rem" }}

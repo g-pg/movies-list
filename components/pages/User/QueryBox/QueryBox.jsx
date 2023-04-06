@@ -43,15 +43,17 @@ export default function QueryBox({ list }) {
 							</div>
 							<div className={styles.actions}>
 								<SecondaryBtn
-									type="btn"
+									as="btn"
 									icon={<MdAddBox />}
 									// content="Adicionar"
+									size="2rem"
 								/>
 
 								<SecondaryBtn
-									type="link"
+									as="link"
 									content="Ler mais"
 									icon={<MdArrowForward />}
+									size="0.8rem"
 								/>
 							</div>
 						</div>

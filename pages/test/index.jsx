@@ -5,11 +5,10 @@ import fetcher from "@/lib/fetcher";
 export default function TestPage() {
 	const [user, setUser] = useState("");
 	const [userFound, setUserFound] = useState("");
+
 	async function findUser(user) {
 		try {
 			const url = `../api/test?email=${user}`;
-			// const res = await fetch(url);
-			// const data = await res.json();
 
 			const data = await fetcher(url);
 			// if (data.ok) {

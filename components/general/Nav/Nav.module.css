@@ -7,33 +7,11 @@
 
 .nav ul a {
     color: var(--cl-accent);
+    color: var(--cl-main-text);
     text-decoration: none;
+    font-size: 0.9rem;
 }
 
-.nav ul a:hover {
+.nav ul li>a:hover {
     color: var(--cl-sec-accent);
-}
-
-.avatar {
-    border-radius: 100vw;
-    border: 2px solid var(--cl-accent);
-    width: 40px;
-    height: 40px;
-    background: var(--cl-accent);
-    position: relative;
-}
-
-.avatar img {
-    border-radius: 100vw;
-}
-
-.avatar p {
-    color: var(--cl-text);
-    text-decoration: none;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    font-weight: 800;
 }

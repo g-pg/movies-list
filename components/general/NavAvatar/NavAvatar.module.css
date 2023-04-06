@@ -1,0 +1,48 @@
+.wrapper {
+    position: relative;
+
+}
+
+.avatar {
+    border-radius: 100vw;
+    border: 2px solid var(--cl-accent);
+    width: 40px;
+    height: 40px;
+    background: var(--cl-accent);
+    position: relative;
+    cursor: pointer;
+}
+
+.avatar img {
+    border-radius: 100vw;
+}
+
+.avatar>p {
+    color: var(--cl-main-text);
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-weight: 800;
+}
+
+.settings div:first-child {
+    color: var(--cl-light-grey);
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.settings {
+    min-width: 230px;
+    z-index: 1000;
+    padding: 1.5rem;
+    position: absolute;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--cl-bg-lighter);
+    border-radius: 8px;
+    border: 1px solid var(--cl-accent);
+
+}

@@ -1,32 +1,36 @@
 /* Btns */
 
-.btn {
+.btn,
+.link {
     background: none;
     border: none;
-    color: var(--cl-accent);
+    color: var(--cl-main-text);
+    text-decoration: none;
     display: flex;
     align-items: center;
-    font-size: 0.8rem;
+    gap: 5px;
     padding: 0;
     cursor: pointer;
+
 }
 
-.btn svg {
-    font-size: 2rem;
+.btn svg,
+.link svg {
+    /* font-size: 1.2rem; */
     color: var(--cl-accent);
     color: inherit;
 }
 
 .btn:hover,
 .link:hover {
-    color: var(--cl-sec-accent);
+    color: var(--cl-accent);
 }
 
-.link {
+/* .link {
     display: flex;
     align-items: center;
     gap: 5px;
     text-decoration: none;
     color: var(--cl-accent);
     font-size: 0.8rem;
-}
+} */
