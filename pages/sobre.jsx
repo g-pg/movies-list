@@ -1,4 +1,4 @@
-import PageParagraph from "@/components/PageParagraph/PageParagraph";
+import PageParagraph from "@/components/general/PageParagraph/PageParagraph";
 import PageTitle from "@/components/general/PageTitle/PageTitle";
 import PrimaryLayout from "@/components/general/PrimaryLayout/PrimaryLayout";
 import React from "react";
