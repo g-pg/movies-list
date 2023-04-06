@@ -33,30 +33,35 @@ export const authOptions = {
 				},
 			},
 			async authorize(credentials) {
-				if (!credentials.email || !credentials.password) {
-					throw new Error("É preciso preencher o usuário e a senha.");
+				try {
+					if (!credentials.email || !credentials.password) {
+						throw new Error("É preciso preencher o usuário e a senha.");
+					}
+
+					const user = await prismadb.user.findUnique({
+						where: {
+							email: credentials.email,
+						},
+					});
+
+					if (!user || !user.hashedPassword) {
+						throw new Error("O usuário não existe.");
+					}
+
+					const isCorrectPassword = await compare(
+						credentials.password,
+						user.hashedPassword
+					);
+
+					if (!isCorrectPassword) {
+						throw new Error("Senha inválida.");
+					}
+
+					return user;
+				} catch (error) {
+					console.log(error);
+					throw new Error("Algo deu errado :(");
 				}
-
-				const user = await prismadb.user.findUnique({
-					where: {
-						email: credentials.email,
-					},
-				});
-
-				if (!user || !user.hashedPassword) {
-					throw new Error("O usuário não existe.");
-				}
-
-				const isCorrectPassword = await compare(
-					credentials.password,
-					user.hashedPassword
-				);
-
-				if (!isCorrectPassword) {
-					throw new Error("Senha inválida.");
-				}
-
-				return user;
 			},
 		}),
 	],
