@@ -16,6 +16,7 @@
     height: auto;
     font-size: 0.6rem;
     text-align: center;
+    border-radius: 6px;
 }
 
 .movieBox {
@@ -34,6 +35,7 @@
     height: 100%;
 }
 
+
 .content {
     align-self: stretch;
     display: flex;
@@ -44,13 +46,29 @@
 }
 
 .movieInfo h3 {
+    color: var(--cl-main-text);
     font-size: 1rem;
+    margin-right: 10px;
 }
 
 .movieInfo p {
     font-size: 0.8rem;
 }
 
+.movieDetails {
+    font-size: 0.7rem;
+    color: var(--cl-light-grey);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 5px;
+}
+
+.movieDetails p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
 
 .actions {
     display: flex;

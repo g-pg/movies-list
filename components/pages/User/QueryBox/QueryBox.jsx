@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./QueryBox.module.css";
 import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
-import { MdAddBox, MdArrowForward } from "react-icons/md";
+import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
 export default function QueryBox({ list }) {
 	function sliceDescription(text) {
 		if (text.length > 130) {
@@ -37,12 +37,21 @@ export default function QueryBox({ list }) {
 							/>
 						) : (
 							<div className={styles.moviePoster}>
-								<p>Poster indisponível.</p>
+								<p aria-hidden="true">Poster indisponível</p>
 							</div>
 						)}
 						<div className={styles.content}>
 							<div className={styles.movieInfo}>
-								<h3>{el.title}</h3>
+								<div className={styles.movieDetails}>
+									<h3>{el.title}</h3>
+									<p>
+										<MdCalendarMonth />{" "}
+										{el.release_date.split("-")[0]}
+									</p>
+									<p>
+										<MdStar /> {el.vote_average.toFixed(1)}
+									</p>
+								</div>
 								<p>{sliceDescription(el.overview)}</p>
 							</div>
 							<div className={styles.actions}>
@@ -55,7 +64,7 @@ export default function QueryBox({ list }) {
 
 								<SecondaryBtn
 									as="link"
-									content="Ler mais"
+									content="Detalhes"
 									icon={<MdArrowForward />}
 									size="0.8rem"
 								/>
