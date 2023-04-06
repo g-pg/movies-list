@@ -13,6 +13,7 @@ import { debounce } from "lodash";
 
 import QueryBox from "@/components/pages/User/QueryBox/QueryBox";
 import useClickOutside from "@/hooks/useClickOutside";
+import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
@@ -104,12 +105,18 @@ export default function UserPage() {
 							<QueryBox list={queryMoviesList} />
 						)}
 					</div>
+					<div className="movies-grid-wrapper">
+						<div className="movies-grid">
+							<MoviesGrid />
+						</div>
+					</div>
 				</div>
 			</PrimaryLayout>
 			<style jsx>{`
 				.wrapper {
 					display: flex;
 					flex-direction: column;
+					gap: 3rem;
 				}
 
 				.search-box {
@@ -117,6 +124,24 @@ export default function UserPage() {
 					position: relative;
 					max-width: 600px;
 					width: 100%;
+				}
+				.movies-grid-wrapper {
+					min-height: 300px;
+					width: 70%;
+					margin: 0 auto;
+				}
+
+				@media (max-width: 780px) {
+					.movies-grid-wrapper {
+						width: 100%;
+					}
+				}
+				.movies-grid {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto;
+					height: 100%;
 				}
 			`}</style>
 		</>
