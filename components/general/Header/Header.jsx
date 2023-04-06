@@ -1,16 +1,45 @@
 import Link from "next/link";
-import Nav from "../Nav/Nav";
-// import styles from "./Header.module.css";
+import { DesktopNav, MobileNav } from "../Nav/Nav";
+import { useSession } from "next-auth/react";
+import NavAvatar from "../NavAvatar/NavAvatar";
+import styles from "./Header.module.css";
+import { memo, useContext } from "react";
+import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
+import { AuthModalContext } from "@/context/AuthModalContext";
 
-export default function Header({ user }) {
+function Header() {
+	const { data: session } = useSession();
+	const user = session ? session.user : null;
+	const logoLink = user ? "/user" : "/";
+	const { setShowAuthModal } = useContext(AuthModalContext);
+
 	return (
 		<>
 			<header>
 				<div className="container header-wrapper">
-					<Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
+					<MobileNav user={user} />
+					<Link
+						href={logoLink}
+						style={{
+							textDecoration: "none",
+							color: "inherit",
+						}}
+					>
 						<h1>Muvi</h1>
 					</Link>
-					<Nav user={user} />
+					<div style={{ marginLeft: "auto" }}>
+						<DesktopNav user={user} />
+					</div>
+					{user ? (
+						<NavAvatar user={user} />
+					) : (
+						<PrimaryBtn
+							style={{ padding: "0.3rem 0.8rem" }}
+							onClick={() => setShowAuthModal((prev) => !prev)}
+						>
+							Login
+						</PrimaryBtn>
+					)}
 				</div>
 			</header>
 
@@ -20,14 +49,17 @@ export default function Header({ user }) {
 					align-items: center;
 					justify-content: space-between;
 					gap: 2rem;
-					padding-block: 1rem;
+					padding-block: 0.8rem;
 				}
 
 				h1 {
 					color: var(--cl-accent);
 					font-size: 1.2rem;
+					${user && "margin-left: auto"}
 				}
 			`}</style>
 		</>
 	);
 }
+
+export default memo(Header);

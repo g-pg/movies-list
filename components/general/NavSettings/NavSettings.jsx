@@ -27,7 +27,7 @@ export default function NavSettings() {
 					flex-direction: column;
 					align-items: flex-start;
 					width: 100%;
-					gap: 0.5rem;
+					gap: 0.8rem;
 				}
 			`}</style>
 		</div>
