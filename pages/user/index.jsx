@@ -33,7 +33,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function UserPage() {
-	const { data: user, isLoading } = useCurrentUser();
+	const { data: user, isLoading, mutate } = useCurrentUser();
+	console.log(user);
 
 	const [showResults, setShowResults] = useState(false);
 	const { ref: queryBoxRef } = useClickOutside(setShowResults);
@@ -101,7 +102,7 @@ export default function UserPage() {
 						/>
 
 						{showResults && queryMoviesList.length > 0 && (
-							<QueryBox list={queryMoviesList} />
+							<QueryBox list={queryMoviesList} user={user} mutate={mutate} />
 						)}
 					</div>
 					{/* <div className="movies-grid-wrapper"> */}

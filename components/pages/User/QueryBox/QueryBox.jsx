@@ -4,7 +4,10 @@ import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
 import addMovie from "@/lib/addMovie";
+import { useSWRConfig } from "swr";
+
 export default function QueryBox({ list }) {
+	const { mutate } = useSWRConfig();
 	function sliceDescription(text) {
 		if (text.length > 130) {
 			let lastSpaceIndex = 0;
@@ -23,11 +26,16 @@ export default function QueryBox({ list }) {
 		return text;
 	}
 
-	async function handleAddMovie(list, movieId) {
+	async function handleAddMovie(list, movieId, movieInfo) {
 		try {
-			console.log("movieId", movieId);
 			const res = await addMovie(list, movieId);
-			console.log(res);
+			mutate(
+				"/api/searchmovie",
+				(prevData) => {
+					console.log("prev", prevData);
+				},
+				false
+			);
 		} catch (error) {
 			console.log(error);
 		}
@@ -71,7 +79,7 @@ export default function QueryBox({ list }) {
 									icon={<MdAddBox />}
 									size="2rem"
 									style={{ color: "var(--cl-accent)" }}
-									onClick={() => handleAddMovie("movietosee", el.id)}
+									onClick={() => handleAddMovie("movietosee", el.id, el)}
 								/>
 
 								<SecondaryBtn
