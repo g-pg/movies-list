@@ -3,6 +3,7 @@ import styles from "./QueryBox.module.css";
 import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
+import addMovie from "@/lib/addMovie";
 export default function QueryBox({ list }) {
 	function sliceDescription(text) {
 		if (text.length > 130) {
@@ -20,6 +21,16 @@ export default function QueryBox({ list }) {
 			return slicedText;
 		}
 		return text;
+	}
+
+	async function handleAddMovie(list, movieId) {
+		try {
+			console.log("movieId", movieId);
+			const res = await addMovie(list, movieId);
+			console.log(res);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
@@ -60,6 +71,7 @@ export default function QueryBox({ list }) {
 									icon={<MdAddBox />}
 									size="2rem"
 									style={{ color: "var(--cl-accent)" }}
+									onClick={() => handleAddMovie("movietosee", el.id)}
 								/>
 
 								<SecondaryBtn
