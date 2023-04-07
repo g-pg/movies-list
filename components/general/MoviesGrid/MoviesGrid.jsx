@@ -36,6 +36,7 @@ export default function MoviesGrid({ list, user }) {
 						key={el.id}
 						src={`https://image.tmdb.org/t/p/w154${el.poster_path}`}
 						alt=""
+						style={{ width: "10%" }}
 					/>
 				);
 			})}
