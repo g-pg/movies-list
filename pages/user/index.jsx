@@ -14,6 +14,7 @@ import { debounce } from "lodash";
 import QueryBox from "@/components/pages/User/QueryBox/QueryBox";
 import useClickOutside from "@/hooks/useClickOutside";
 import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
+import useSWR from "swr";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
@@ -33,7 +34,6 @@ export async function getServerSideProps(context) {
 
 export default function UserPage() {
 	const { data: user, isLoading } = useCurrentUser();
-	console.log(user);
 
 	const [showResults, setShowResults] = useState(false);
 	const { ref: queryBoxRef } = useClickOutside(setShowResults);
@@ -69,7 +69,6 @@ export default function UserPage() {
 			}
 		}, 500);
 
-		console.log(query);
 		if (query.length > 2) {
 			searchMovieByName();
 		} else if (query.length === 0) {
@@ -105,10 +104,10 @@ export default function UserPage() {
 							<QueryBox list={queryMoviesList} />
 						)}
 					</div>
-					<div className="movies-grid-wrapper">
-						<div className="movies-grid">
-							<MoviesGrid />
-						</div>
+					{/* <div className="movies-grid-wrapper"> */}
+					<div className="movies-grid">
+						<MoviesGrid user={user} list="moviesToSee" />
+						{/* </div> */}
 					</div>
 				</div>
 			</PrimaryLayout>
@@ -126,9 +125,6 @@ export default function UserPage() {
 					width: 100%;
 				}
 				.movies-grid-wrapper {
-					min-height: 300px;
-					width: 70%;
-					margin: 0 auto;
 				}
 
 				@media (max-width: 780px) {
@@ -137,6 +133,9 @@ export default function UserPage() {
 					}
 				}
 				.movies-grid {
+					min-height: 300px;
+					width: 70%;
+					margin: 0 auto;
 					display: flex;
 					align-items: center;
 					justify-content: center;
