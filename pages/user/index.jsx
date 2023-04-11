@@ -7,13 +7,16 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 import PrimaryLayout from "@/components/general/PrimaryLayout/PrimaryLayout";
 
-import PageTitle from "@/components/general/PageTitle/PageTitle";
+import PageTitle, { PageSubTitle } from "@/components/general/PageTitle/PageTitle";
 import SearchBar from "@/components/general/SearchBar/SearchBar";
 
 import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
+import useMoviesInfo from "@/hooks/useMoviesInfo";
+import PageText from "@/components/general/PageParagraph/PageParagraph";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
+
 	if (!session) {
 		return {
 			redirect: {
@@ -30,7 +33,12 @@ export async function getServerSideProps(context) {
 
 export default function UserPage() {
 	const { data: user, isLoading, mutate } = useCurrentUser();
-	console.log(user);
+	const moviesList = "moviesToSee";
+	const {
+		data: movies,
+		isLoading: loadingMovies,
+		mutate: mutateMovies,
+	} = useMoviesInfo(user && user[moviesList]);
 
 	if (isLoading) {
 		return <Loading />;
@@ -41,9 +49,29 @@ export default function UserPage() {
 			<PrimaryLayout user={user}>
 				<div className="container wrapper">
 					<PageTitle>Olá, {user?.name.split(" ")[0]}!</PageTitle>
-					<SearchBar user={user} />
+					<PageSubTitle>
+						{movies?.length < 1
+							? "Adicione o primeiro filme à sua lista!"
+							: `Você já tem ${
+									// <span
+									// 	style={{
+									// 		color: "var(--cl-accent)",
+									// 		fontWeight: "700",
+									// 	}}
+									// >
+									movies?.length
+									// </span>
+							  } filme${movies?.length > 1 ? "s" : ""} para assistir!`}
+					</PageSubTitle>
+					<SearchBar user={user} mutate={mutateMovies} movies={movies} />
 					<div className="movies-grid">
-						<MoviesGrid user={user} list="moviesToSee" />
+						<MoviesGrid
+							user={user}
+							movies={movies}
+							isLoading={loadingMovies}
+							mutate={mutateMovies}
+							moviesList={moviesList}
+						/>
 					</div>
 				</div>
 			</PrimaryLayout>
@@ -57,11 +85,6 @@ export default function UserPage() {
 				.movies-grid-wrapper {
 				}
 
-				@media (max-width: 780px) {
-					.movies-grid-wrapper {
-						width: 100%;
-					}
-				}
 				.movies-grid {
 					min-height: 300px;
 					width: 80%;
@@ -70,6 +93,15 @@ export default function UserPage() {
 					align-items: center;
 					justify-content: center;
 					height: 100%;
+				}
+
+				@media (max-width: 780px) {
+					.movies-grid-wrapper {
+						width: 100%;
+					}
+					.movies-grid {
+						width: 100%;
+					}
 				}
 			`}</style>
 		</>

@@ -4,10 +4,9 @@ import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
 import addMovie from "@/lib/addMovie";
-import { useSWRConfig } from "swr";
+import toast, { Toaster } from "react-hot-toast";
 
-export default function QueryBox({ list }) {
-	const { mutate } = useSWRConfig();
+export default function QueryBox({ list, movies, setShowResults, mutate }) {
 	function sliceDescription(text) {
 		if (text.length > 130) {
 			let lastSpaceIndex = 0;
@@ -26,73 +25,75 @@ export default function QueryBox({ list }) {
 		return text;
 	}
 
-	async function handleAddMovie(list, movieId, movieInfo) {
+	async function handleAddMovie(listAPI, movieId, movieInfo) {
 		try {
-			const res = await addMovie(list, movieId);
-			mutate(
-				"/api/searchmovie",
-				(prevData) => {
-					console.log("prev", prevData);
-				},
-				false
-			);
+			let newMoviesList = movies ? [...movies, movieInfo] : [movieInfo];
+			mutate(newMoviesList, false);
+			const res = await addMovie(listAPI, movieId, "moviesToSee");
+			toast.success(res.data, { position: "bottom-center" });
+			setShowResults(false);
 		} catch (error) {
-			console.log(error);
+			mutate(movies, false);
+			toast.error(error.message, { position: "bottom-center" });
 		}
 	}
 
 	return (
-		<div className={styles.wrapper}>
-			{list.map((el) => {
-				return (
-					<div className={styles.movieBox} key={el.id}>
-						{el.poster_path ? (
-							<Image
-								className={styles.moviePoster}
-								width="154"
-								height="231"
-								src={`https://image.tmdb.org/t/p/w154${el.poster_path}`}
-								alt={el.title}
-							/>
-						) : (
-							<div className={styles.moviePoster}>
-								<p aria-hidden="true">Poster indisponível</p>
-							</div>
-						)}
-						<div className={styles.content}>
-							<div className={styles.movieInfo}>
-								<div className={styles.movieDetails}>
-									<h3>{el.title}</h3>
-									<p>
-										<MdCalendarMonth />{" "}
-										{el.release_date.split("-")[0]}
-									</p>
-									<p>
-										<MdStar /> {el.vote_average.toFixed(1)}
-									</p>
+		<>
+			<div className={styles.wrapper}>
+				{list.map((el) => {
+					return (
+						<div className={styles.movieBox} key={el.id}>
+							{el.poster_path ? (
+								<Image
+									className={styles.moviePoster}
+									width="154"
+									height="231"
+									src={`https://image.tmdb.org/t/p/w154${el.poster_path}`}
+									alt={el.title}
+								/>
+							) : (
+								<div className={styles.moviePoster}>
+									<p aria-hidden="true">Poster indisponível</p>
 								</div>
-								<p>{sliceDescription(el.overview)}</p>
-							</div>
-							<div className={styles.actions}>
-								<SecondaryBtn
-									as="btn"
-									icon={<MdAddBox />}
-									size="2rem"
-									style={{ color: "var(--cl-accent)" }}
-									onClick={() => handleAddMovie("movietosee", el.id, el)}
-								/>
+							)}
+							<div className={styles.content}>
+								<div className={styles.movieInfo}>
+									<div className={styles.movieDetails}>
+										<h3>{el.title}</h3>
+										<p>
+											<MdCalendarMonth />{" "}
+											{el.release_date.split("-")[0]}
+										</p>
+										<p>
+											<MdStar /> {el.vote_average.toFixed(1)}
+										</p>
+									</div>
+									<p>{sliceDescription(el.overview)}</p>
+								</div>
+								<div className={styles.actions}>
+									<SecondaryBtn
+										as="btn"
+										icon={<MdAddBox />}
+										size="2rem"
+										style={{ color: "var(--cl-accent)" }}
+										onClick={() =>
+											handleAddMovie("updatelist", el.id, el)
+										}
+									/>
 
-								<SecondaryBtn
-									as="link"
-									content="Detalhes"
-									icon={<MdArrowForward />}
-									size="0.8rem"
-								/>
+									<SecondaryBtn
+										as="link"
+										content="Detalhes"
+										icon={<MdArrowForward />}
+										size="0.8rem"
+									/>
+								</div>
 							</div>
 						</div>
-					</div>
-				);
-			})}
-		</div>
+					);
+				})}
+			</div>
+		</>
 	);
 }

@@ -6,13 +6,13 @@ import QueryBox from "./QueryBox";
 import useClickOutside from "@/hooks/useClickOutside";
 import { debounce } from "lodash";
 
-export default function SearchBar({ placeholder, user }) {
+export default function SearchBar({ placeholder, mutate, movies }) {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [searchingMovies, setSearchingMovies] = useState(false);
 	const [showResults, setShowResults] = useState(false);
 	const { ref: queryBoxRef } = useClickOutside(setShowResults);
-
 	const [queryMoviesList, setQueryMoviesList] = useState([]);
+
 	useEffect(() => {
 		const query = searchQuery.replace(/ /g, "+");
 		const amountToShow = 10;
@@ -29,16 +29,13 @@ export default function SearchBar({ placeholder, user }) {
 					firstNMovies.push(data.results[i]);
 				}
 
-				console.log(firstNMovies);
 				setQueryMoviesList(firstNMovies);
 				setSearchingMovies(false);
 				setShowResults(true);
-			} catch (error) {
-				console.log(error);
-			}
+			} catch (error) {}
 		}, 500);
 
-		if (query.length > 2) {
+		if (query.length > 1) {
 			searchMovieByName();
 		} else if (query.length === 0) {
 			setQueryMoviesList([]);
@@ -55,7 +52,6 @@ export default function SearchBar({ placeholder, user }) {
 
 	return (
 		<>
-			{" "}
 			<div className={"search-box"} onClick={() => setShowResults(true)} ref={queryBoxRef}>
 				<div className={styles.wrapper}>
 					<input
@@ -79,7 +75,12 @@ export default function SearchBar({ placeholder, user }) {
 					</div>
 				</div>
 				{showResults && queryMoviesList.length > 0 && (
-					<QueryBox list={queryMoviesList} />
+					<QueryBox
+						list={queryMoviesList}
+						mutate={mutate}
+						movies={movies}
+						setShowResults={setShowResults}
+					/>
 				)}
 			</div>
 			<style jsx>{`
