@@ -30,11 +30,11 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 			let newMoviesList = movies ? [...movies, movieInfo] : [movieInfo];
 			mutate(newMoviesList, false);
 			const res = await addMovie(listAPI, movieId, "moviesToSee");
-			toast.success(res.data, { position: "bottom-center" });
+			toast.success(res.data);
 			setShowResults(false);
 		} catch (error) {
 			mutate(movies, false);
-			toast.error(error.message, { position: "bottom-center" });
+			toast.error(error.message);
 		}
 	}
 

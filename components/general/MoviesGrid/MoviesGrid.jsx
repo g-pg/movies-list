@@ -21,30 +21,32 @@ export default function MoviesGrid({ isLoading, mutate, movies, moviesList }) {
 		);
 	}
 
-	async function deleteMovie(id) {
-		// function deleteWarning(id) {
-		// prompt("Certeza?");
-		// }
+	async function deleteMovie(id, caller) {
+		try {
+			const newList = movies.filter((movie) => movie.id != id);
+			id = id.toString();
+			mutate(newList, false);
+			const res = await axios.delete("/api/updatelist", {
+				data: { movieId: id, listToUpdate: moviesList },
+			});
 
-		const newList = movies.filter((movie) => movie.id != id);
-		id = id.toString();
-		mutate(newList, false);
-		const res = await axios.delete("/api/updatelist", {
-			data: { movieId: id, listToUpdate: moviesList },
-		});
-		// console.log(res.data);
-		// toast.success(res.data);
+			caller !== "addToSeen" && toast.success(res.data);
+		} catch (error) {
+			console.log(error);
+			toast.error("Oops! Algo deu errado.");
+		}
 	}
 
 	async function addToSeen(id) {
 		try {
-			await deleteMovie(id);
+			await deleteMovie(id, "addToSeen");
 			id = id.toString();
 
 			const res = await axios.post("/api/updatelist", {
 				movieId: id,
 				listToUpdate: "moviesSeen",
 			});
+			toast.success("Assistido!");
 		} catch (error) {
 			console.log(error);
 			toast.error("Oops! Algo deu errado.");

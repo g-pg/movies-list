@@ -26,6 +26,25 @@ export default async function handler(req, res) {
 				return res.status(409).json("Este filme já está na lista.");
 			}
 
+			if (listToUpdate === "moviesToSee") {
+				const seenList = await prismadb.user.findMany({
+					where: {
+						email: currentUser.email,
+					},
+					select: {
+						moviesSeen: true,
+					},
+				});
+
+				const alreadySeen = await seenList[0].moviesSeen.find(
+					(movie) => movie == movieId
+				);
+
+				if (alreadySeen) {
+					return res.status(409).json("Oops! Parece que você já viu esse filme!");
+				}
+			}
+
 			const response = await prismadb.user.update({
 				where: {
 					email: currentUser.email,
@@ -37,7 +56,7 @@ export default async function handler(req, res) {
 				},
 			});
 
-			return res.status(200).json("Filme adicionado com sucesso.");
+			return res.status(200).json("Filme adicionado com sucesso!");
 		}
 
 		if (req.method === "DELETE") {
