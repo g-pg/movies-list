@@ -39,7 +39,7 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 			setShowResults(false);
 		} catch (error) {
 			mutate(movies, false);
-			toast.error(error.message);
+			toast.error(error.response.data);
 		}
 	}
 
@@ -90,6 +90,7 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 										content="Detalhes"
 										icon={<MdArrowForward />}
 										size="0.8rem"
+										href={`/movie/${el.id}`}
 									/>
 								</div>
 							</div>
