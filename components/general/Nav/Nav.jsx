@@ -22,7 +22,7 @@ export default function Nav({ user }) {
 					</li>
 					{user && (
 						<li>
-							<Link href="/assistidos">Assistidos</Link>
+							<Link href="/user/assistidos">Assistidos</Link>
 						</li>
 					)}
 				</ul>
@@ -46,9 +46,7 @@ export function MobileNav({ user }) {
 			? (document.body.style.overflow = "hidden")
 			: (document.body.style.overflow = "auto");
 	}, [showBurger]);
-	useEffect(() => {
-		console.log(showBurger);
-	}, [showBurger]);
+	useEffect(() => {}, [showBurger]);
 	return (
 		<div
 			ref={burgerMenuRef}

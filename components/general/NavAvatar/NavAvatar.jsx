@@ -4,8 +4,6 @@ import Image from "next/image";
 import styles from "./NavAvatar.module.css";
 import NavSettings from "../NavSettings/NavSettings";
 import useClickOutside from "@/hooks/useClickOutside";
-import { useSession } from "next-auth/react";
-import useCurrentUser from "@/hooks/useCurrentUser";
 export default function NavAvatar({ user }) {
 	// const { data: session } = useSession();
 
