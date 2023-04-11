@@ -5,6 +5,7 @@ import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
 import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
 import addMovie from "@/lib/addMovie";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 export default function QueryBox({ list, movies, setShowResults, mutate }) {
 	function sliceDescription(text) {
@@ -25,11 +26,15 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 		return text;
 	}
 
-	async function handleAddMovie(listAPI, movieId, movieInfo) {
+	async function handleAddMovie(id, movieInfo) {
 		try {
 			let newMoviesList = movies ? [...movies, movieInfo] : [movieInfo];
 			mutate(newMoviesList, false);
-			const res = await addMovie(listAPI, movieId, "moviesToSee");
+			id = id.toString();
+			const res = await axios.post("/api/updatelist", {
+				movieId: id,
+				listToUpdate: "moviesToSee",
+			});
 			toast.success(res.data);
 			setShowResults(false);
 		} catch (error) {
@@ -77,9 +82,7 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 										icon={<MdAddBox />}
 										size="2rem"
 										style={{ color: "var(--cl-accent)" }}
-										onClick={() =>
-											handleAddMovie("updatelist", el.id, el)
-										}
+										onClick={() => handleAddMovie(el.id, el)}
 									/>
 
 									<SecondaryBtn
