@@ -5,14 +5,15 @@ import Loading from "@/components/general/Loading/Loading";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-import PrimaryLayout from "@/components/general/PrimaryLayout/PrimaryLayout";
-
-import PageTitle, { PageSubTitle } from "@/components/general/PageTitle/PageTitle";
+import PrimaryLayout, {
+	Highlight,
+	PageTitle,
+	PageSubtitle,
+} from "@/components/general/PrimaryLayout/PrimaryLayout";
 import SearchBar from "@/components/general/SearchBar/SearchBar";
 
 import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
 import useMoviesInfo from "@/hooks/useMoviesInfo";
-import PageText from "@/components/general/PageParagraph/PageParagraph";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
@@ -49,20 +50,15 @@ export default function UserPage() {
 			<PrimaryLayout user={user}>
 				<div className="container wrapper">
 					<PageTitle>Olá, {user?.name.split(" ")[0]}!</PageTitle>
-					<PageSubTitle>
-						{movies?.length < 1
-							? "Adicione o primeiro filme à sua lista!"
-							: `Você já tem ${
-									// <span
-									// 	style={{
-									// 		color: "var(--cl-accent)",
-									// 		fontWeight: "700",
-									// 	}}
-									// >
-									movies?.length
-									// </span>
-							  } filme${movies?.length > 1 ? "s" : ""} para assistir!`}
-					</PageSubTitle>
+
+					{movies?.length < 1 ? (
+						<PageSubtitle>Adicione o primeiro filme!</PageSubtitle>
+					) : (
+						<PageSubtitle>
+							Você já tem <Highlight>{movies?.length}</Highlight> filme
+							{movies?.length > 1 ? "s" : ""} para assistir!
+						</PageSubtitle>
+					)}
 					<SearchBar user={user} mutate={mutateMovies} movies={movies} />
 					<div className="movies-grid">
 						<MoviesGrid

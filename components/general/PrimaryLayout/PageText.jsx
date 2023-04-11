@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PageTitle({ children, style }) {
+export function PageTitle({ children, style }) {
 	return (
 		<>
 			<h2 style={style}>{children}</h2>
@@ -23,7 +23,7 @@ export default function PageTitle({ children, style }) {
 	);
 }
 
-export function PageSubTitle({ children, style }) {
+export function PageSubtitle({ children, style }) {
 	return (
 		<>
 			<h3 style={style}>{children}</h3>
@@ -42,6 +42,37 @@ export function PageSubTitle({ children, style }) {
 					h3 {
 						font-size: 0.7rem;
 					}
+				}
+			`}</style>
+		</>
+	);
+}
+
+export function PageText({ children, style }) {
+	return (
+		<>
+			<p style={style}>{children}</p>
+
+			<style jsx>{`
+				p {
+					color: var(--cl-text);
+					width: 80%;
+					margin: 0 auto;
+					margin-bottom: 1rem;
+				}
+			`}</style>
+		</>
+	);
+}
+
+export function Highlight({ children, style }) {
+	return (
+		<>
+			<span style={style}>{children}</span>
+			<style jsx>{`
+				span {
+					color: var(--cl-accent);
+					fontweight: 700;
 				}
 			`}</style>
 		</>

@@ -1,12 +1,14 @@
 import React from "react";
-import PrimaryLayout from "@/components/general/PrimaryLayout/PrimaryLayout";
+import PrimaryLayout, {
+	PageTitle,
+	PageSubtitle,
+} from "@/components/general/PrimaryLayout/PrimaryLayout";
 import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
 import Loading from "@/components/general/Loading/Loading";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useMoviesInfo from "@/hooks/useMoviesInfo";
-import PageTitle from "@/components/general/PageTitle/PageTitle";
 
 export async function getServerSideProps(context) {
 	const session = await getServerSession(context.req, context.res, authOptions);
