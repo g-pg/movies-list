@@ -20,16 +20,13 @@
     --card-border-radius: 8px;
     border-radius: var(--card-border-radius);
     background: var(--cl-bg-lighter);
-
-    /* background: #000000; */
-    /* background: var(--cl-main-text); */
-    /* color: var(--cl-bg); */
     padding: 0.6rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     position: relative;
-    /* box-shadow: 0px 0px 11px -3px var(--cl-accent); */
+    min-height: 288.59px;
+
 }
 
 
@@ -37,6 +34,14 @@
     border-radius: var(--card-border-radius);
     height: auto;
 
+}
+
+.poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
 }
 
 .infoWrapper {

@@ -6,7 +6,7 @@ import AuthModal from "../Auth/AuthModal";
 import { Toaster, toast } from "react-hot-toast";
 export default function PrimaryLayout({ children, user }) {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
-	toast.remove();
+	// toast.remove();
 	return (
 		<>
 			<div>
@@ -60,7 +60,7 @@ export function PageSubtitle({ children, style }) {
 
 			<style jsx>{`
 				h3 {
-					font-size: 0.8rem;
+					font-size: 1rem;
 					color: var(--cl-text);
 					text-align: center;
 					margin-top: -4.5rem;
@@ -70,7 +70,7 @@ export function PageSubtitle({ children, style }) {
 
 				@media (max-width: 768px) {
 					h3 {
-						font-size: 0.7rem;
+						font-size: 0.8rem;
 					}
 				}
 			`}</style>

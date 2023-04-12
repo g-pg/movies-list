@@ -76,14 +76,18 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 		<>
 			<div className={styles.cardWrapper}>
 				<div className={styles.poster}>
-					<Image
-						src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
-						width="154"
-						height="223"
-						// fill
-						// object-fit="contain"
-						alt={movie.title}
-					/>
+					{movie.poster_path ? (
+						<Image
+							src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
+							width="154"
+							height="223"
+							// fill
+							// object-fit="contain"
+							alt={movie.title}
+						/>
+					) : (
+						<p>Poster indisponível.</p>
+					)}
 				</div>
 				<div className={styles.infoWrapper}>
 					<h3>{movie.title}</h3>
@@ -110,8 +114,8 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 						/>
 					)}
 					<SecondaryBtn
-						as="btn"
-						// onClick={() => deleteMovie(movie.id)}
+						as="link"
+						href={`/movie/${movie.id}`}
 						// style={btnColor}
 						icon={<IoIosEye />}
 						// size={"1.5rem"}

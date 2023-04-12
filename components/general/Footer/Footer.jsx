@@ -1,8 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 import TmdbLogo from "@/public/tmdb-logo.svg";
 import Credits from "../Credits/Credits";
-export default function Footer() {
+export function Footer() {
 	return (
 		<>
 			<footer>
@@ -37,3 +37,5 @@ export default function Footer() {
 		</>
 	);
 }
+
+export default memo(Footer);
