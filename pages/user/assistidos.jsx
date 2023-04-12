@@ -43,7 +43,7 @@ export default function AssistidosPage() {
 		<>
 			<PrimaryLayout>
 				<div className="container wrapper">
-					<PageTitle>Filmes Assistidos</PageTitle>
+					<PageTitle>Filmes assistidos</PageTitle>
 
 					<div className="movies-grid">
 						<MoviesGrid
