@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import { AuthModalContext } from "@/context/AuthModalContext";
 import AuthModal from "../Auth/AuthModal";
 import { Toaster, toast } from "react-hot-toast";
+import Link from "next/link";
 export default function PrimaryLayout({ children, user }) {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
 	// toast.remove();
@@ -86,9 +87,10 @@ export function PageText({ children, style }) {
 			<style jsx>{`
 				p {
 					color: var(--cl-text);
-					width: 80%;
+					text-align: justify;
 					margin: 0 auto;
 					margin-bottom: 1rem;
+					font-size: 0.975rem;
 				}
 
 				@media (max-width: 780px) {
@@ -101,6 +103,80 @@ export function PageText({ children, style }) {
 	);
 }
 
+export function ParagraphTitle({ children, style, tag }) {
+	const Tag = tag || "h4";
+	return (
+		<>
+			<Tag style={style}>{children}</Tag>
+			<style jsx>
+				{`
+					${Tag} {
+						color: var(--cl-text);
+						margin-top: 2rem;
+						margin-bottom: 0.5rem;
+					}
+
+					h4 {
+						font-weight: 700;
+						font-size: 1.3rem;
+					}
+
+					h5 {
+						font-weight: 600;
+						font-size: 1.2rem;
+					}
+
+					h5 {
+						font-weight: 500;
+						font-size: 1.1rem;
+					}
+				`}
+			</style>
+		</>
+	);
+}
+
+export function ParagraphLink({ children, style, href }) {
+	return (
+		<>
+			<a href={href} target="_blank" className="link">
+				{children}
+			</a>
+			<style jsx>
+				{`
+					a {
+						font-size: inherit;
+						font-weight: 500;
+						text-decoration: none;
+						color: var(--cl-accent);
+						transition: all 1s ease;
+						position: relative;
+						cursor: pointer;
+					}
+
+					a::after {
+						content: "";
+						position: absolute;
+						width: 100%;
+						height: 1px;
+						background: var(--cl-accent);
+						bottom: -1px;
+						left: 0px;
+						transition: all 0.3s ease;
+						transform: scaleX(0);
+						transform-origin: 0 0;
+						/* opacity: 0; */
+					}
+
+					a:hover::after {
+						transform: scaleX(1);
+						transform-origin: 0 0;
+					}
+				`}
+			</style>
+		</>
+	);
+}
 export function Highlight({ children, style }) {
 	return (
 		<>
@@ -109,6 +185,25 @@ export function Highlight({ children, style }) {
 				span {
 					color: var(--cl-accent);
 					fontweight: 700;
+				}
+			`}</style>
+		</>
+	);
+}
+
+export function TextContainer({ children }) {
+	return (
+		<>
+			<div>{children}</div>
+			<style jsx>{`
+				div {
+					margin: 0 auto;
+					width: 70%;
+				}
+				@media (max-width: 780px) {
+					div {
+						width: 100%;
+					}
 				}
 			`}</style>
 		</>
