@@ -129,4 +129,8 @@
     .modalWrapper {
         width: 90vw;
     }
+
+    .modalWrapper input {
+        width: 100%;
+    }
 }
