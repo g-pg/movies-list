@@ -1,10 +1,34 @@
-import React, { use, useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 import fetcher from "@/lib/fetcher";
+import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+import useCurrentUser from "@/hooks/useCurrentUser";
+import { useRouter } from "next/router";
+
+export async function getServerSideProps(context) {
+	const session = await getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/?auth=true",
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {},
+	};
+}
 
 export default function TestPage() {
 	const [user, setUser] = useState("");
 	const [userFound, setUserFound] = useState("");
+	const router = useRouter();
+	const { data: userLogged, status } = useCurrentUser();
+	console.log(router);
 
 	async function findUser(user) {
 		try {
@@ -42,6 +66,29 @@ export default function TestPage() {
 
 	function handleSignOut() {
 		signOut({ callbackUrl: "/" });
+	}
+
+	useEffect(() => {
+		if (userLogged && userLogged.role !== "admin") {
+			router.replace("/?auth=true");
+		}
+	}, [userLogged, router]);
+
+	if (userLogged?.role != "admin") {
+		return (
+			<p
+				style={{
+					position: "absolute",
+					inset: "0",
+					margin: "auto",
+					color: "red",
+					fontSize: "3rem",
+					fontWeight: "700",
+				}}
+			>
+				Você não deveria estar aqui.
+			</p>
+		);
 	}
 	return (
 		<>
