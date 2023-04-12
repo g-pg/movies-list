@@ -1,9 +1,6 @@
-import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
-import { authOptions } from "../api/auth/[...nextauth]";
 import React, { useEffect, useState } from "react";
 import PrimaryLayout, { PageTitle } from "@/components/general/PrimaryLayout/PrimaryLayout";
-import useMoviesInfo from "@/hooks/useMoviesInfo";
 import Loading from "@/components/general/Loading/Loading";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -12,28 +9,18 @@ import { MdStar, MdKeyboardBackspace } from "react-icons/md";
 import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import addMovie from "@/lib/addMovie";
 import SecondaryBtn from "@/components/general/SecondaryBtn/SecondaryBtn";
-
-export async function getServerSideProps(context) {
-	const session = await getServerSession(context.req, context.res, authOptions);
-
-	if (!session) {
-		return {
-			redirect: {
-				destination: "/?auth=true",
-				permanent: false,
-			},
-		};
-	}
-
-	return {
-		props: {},
-	};
-}
+import { useSession } from "next-auth/react";
 
 export default function MovieDetails() {
 	const router = useRouter();
 	const { id } = router.query;
 	const [movie, setMovie] = useState([]);
+	const { status: authStatus } = useSession({
+		required: true,
+		onUnauthenticated() {
+			router.push("/?auth=true");
+		},
+	});
 
 	useEffect(() => {
 		async function getMovieInfo() {
@@ -98,9 +85,9 @@ export default function MovieDetails() {
 										{el.name}
 									</p>
 								))}
-								<p className="info-general">
+								<p className="info-general" style={{ fontWeight: "700" }}>
 									<MdStar color="var(--cl-accent)" />{" "}
-									{movie.vote_average.toFixed(2)}
+									{movie.vote_average.toFixed(1)}
 								</p>
 							</div>
 							<p className="info-general">Duração: {movie.runtime} minutos.</p>
@@ -128,10 +115,7 @@ export default function MovieDetails() {
 					.poster-wrapper :global(.poster) {
 						width: 100%;
 						height: auto;
-						// max-width: 450px;
 						border-radius: 8px;
-
-						// margin: 0 auto;
 					}
 					.poster-wrapper {
 						max-width: 450px;
@@ -153,7 +137,6 @@ export default function MovieDetails() {
 						display: flex;
 						flex-direction: column;
 						gap: 1rem;
-						// padding-block: 2rem;
 					}
 					.movie-title {
 						font-size: 1.5rem;
@@ -167,9 +150,7 @@ export default function MovieDetails() {
 					}
 					.genre {
 						display: inline-block;
-						// background: var(--cl-sec-accent);
-						// border-radius: 16px;
-						// padding: 0.2em 0.6em;
+
 						font-size: 0.9rem;
 						font-weight: 700;
 					}
@@ -178,11 +159,10 @@ export default function MovieDetails() {
 						font-size: 0.9rem;
 						display: flex;
 						align-items: center;
-						gap: 0.5em;
+						gap: 0.3em;
 					}
 
 					.btn {
-						// margin-top: auto;
 						max-width: 200px;
 					}
 					@media (max-width: 780px) {
