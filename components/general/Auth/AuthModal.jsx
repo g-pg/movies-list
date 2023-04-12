@@ -41,6 +41,9 @@ export default function AuthModal() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		if (formData.name.length > 50 || formData.email.length > 50) {
+			return setWarning("Eita! Pode resumir os dados, sô.");
+		}
 		setIsLoading(true);
 		if (formType === "register") {
 			register();
