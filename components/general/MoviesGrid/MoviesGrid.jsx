@@ -95,15 +95,6 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 					)}
 					{showBtns && (
 						<div className={styles.btnsWrapper}>
-							<SecondaryBtn
-								as="btn"
-								onClick={() => deleteMovie(movie.id)}
-								icon={<IoMdTrash size="1.5rem" />}
-								title="Remover da lista"
-								content={"Remover"}
-								size={"0.7rem"}
-							/>
-
 							{moviesList != "moviesSeen" && (
 								<SecondaryBtn
 									as="btn"
@@ -114,7 +105,6 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 									size="0.7rem"
 								/>
 							)}
-
 							<SecondaryBtn
 								as="link"
 								href={`/movie/${movie.id}`}
@@ -123,7 +113,14 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 								content={"Informações"}
 								size={"0.7rem"}
 							/>
-							{/* <div className={styles.overlay}></div> */}
+							<SecondaryBtn
+								as="btn"
+								onClick={() => deleteMovie(movie.id)}
+								icon={<IoMdTrash size="1.5rem" />}
+								title="Remover da lista"
+								content={"Remover"}
+								size={"0.7rem"}
+							/>
 						</div>
 					)}
 				</div>
