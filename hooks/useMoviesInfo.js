@@ -5,7 +5,11 @@ import useSWR from "swr";
 export default function useMoviesInfo(list) {
 	const userSavedMovies = list;
 	const ids = userSavedMovies?.join(",");
-	const key = `/api/searchmovie?id=${ids}`;
+	let key = `/api/searchmovie?id=${ids}`;
+
+	if (list === undefined) {
+		key = false;
+	}
 
 	const { data, isLoading, error, mutate } = useSWR(key, fetcher, {
 		revalidateOnFocus: false,
