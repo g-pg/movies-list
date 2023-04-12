@@ -35,6 +35,7 @@ export async function getServerSideProps(context) {
 export default function UserPage() {
 	const { data: user, isLoading, mutate } = useCurrentUser();
 	const moviesList = "moviesToSee";
+
 	const {
 		data: movies,
 		isLoading: loadingMovies,
@@ -55,7 +56,7 @@ export default function UserPage() {
 						<PageSubtitle>Adicione o primeiro filme!</PageSubtitle>
 					) : (
 						<PageSubtitle>
-							Você já tem <Highlight>{movies?.length}</Highlight> filme
+							Você tem <Highlight>{movies?.length}</Highlight> filme
 							{movies?.length > 1 ? "s" : ""} para assistir!
 						</PageSubtitle>
 					)}
