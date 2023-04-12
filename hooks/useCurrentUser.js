@@ -6,7 +6,6 @@ const useCurrentUser = () => {
 		revalidateOnFocus: false,
 	});
 
-	console.log("usecurrentuser");
 	return {
 		data,
 		error,
