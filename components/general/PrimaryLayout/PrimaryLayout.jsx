@@ -90,6 +90,12 @@ export function PageText({ children, style }) {
 					margin: 0 auto;
 					margin-bottom: 1rem;
 				}
+
+				@media (max-width: 780px) {
+					p {
+						width: 100%;
+					}
+				}
 			`}</style>
 		</>
 	);
