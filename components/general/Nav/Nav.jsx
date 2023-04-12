@@ -15,16 +15,16 @@ export default function Nav({ user }) {
 			<nav className={styles.nav}>
 				<ul>
 					<li>
-						<Link href={homeLink}>Home</Link>
-					</li>
-					<li>
-						<Link href="/sobre">Sobre</Link>
+						<Link href={homeLink}>{user ? "Minha lista" : "Home"}</Link>
 					</li>
 					{user && (
 						<li>
 							<Link href="/user/assistidos">Assistidos</Link>
 						</li>
 					)}
+					<li>
+						<Link href="/sobre">Sobre</Link>
+					</li>
 				</ul>
 			</nav>
 		</>
