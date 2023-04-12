@@ -26,7 +26,7 @@ export default function AuthModal() {
 
 	useEffect(() => {
 		if (router.query.error == "OAuthAccountNotLinked") {
-			setWarning("Parece que você logou com um método diferente da última vez. ");
+			setWarning("Parece que você se registrou com um método diferente. ");
 		}
 	}, [router.query.error]);
 	function handleChangeFormType(type) {

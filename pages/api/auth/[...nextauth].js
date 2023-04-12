@@ -49,7 +49,9 @@ export const authOptions = {
 					}
 
 					if (!user.hashedPassword) {
-						throw new Error("Parece que você se registrou com outro método.");
+						throw new Error(
+							"Parece que você se registrou com um método diferente."
+						);
 					}
 
 					const isCorrectPassword = await compare(
