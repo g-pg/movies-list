@@ -4,7 +4,6 @@ export default async function handler(req, res) {
 	const { name, id } = req.query;
 	const KEY = process.env.MOVIEDB_KEY;
 	let URL;
-	console.log("chucrute", id);
 	if (name) {
 		URL = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=pt-BR&query=${name}`;
 

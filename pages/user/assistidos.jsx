@@ -36,7 +36,6 @@ export default function AssistidosPage() {
 		mutate: mutateMovies,
 	} = useMoviesInfo(user && user[moviesList]);
 
-	console.log(movies);
 	if (isLoading) {
 		return <Loading />;
 	}
