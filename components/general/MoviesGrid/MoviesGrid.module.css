@@ -1,38 +1,29 @@
 .movieGrid {
-    display: flex;
-    flex-wrap: wrap;
-    /* gap: 0.5rem; */
-
-    justify-content: center;
-    margin: 0 auto;
-    width: 100%;
-    gap: 1rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, 154px);
+    width: 100%;
+    gap: 1rem;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+    /* margin: 0 auto; */
+    /* gap: 1rem; */
     align-content: center;
+
+
 }
 
-.movieGrid .cardWrapper:last-child {
-    /* margin-right: auto; */
-}
 
 .cardWrapper {
     --card-border-radius: 8px;
     border-radius: var(--card-border-radius);
-    background: var(--cl-bg-lighter);
-    padding: 0.6rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     position: relative;
-    min-height: 288.59px;
-
-}
-
-
-.poster img {
-    border-radius: var(--card-border-radius);
-    height: auto;
+    margin-bottom: 1.5rem;
+    /* min-height: 288.59px; */
 
 }
 
@@ -40,13 +31,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     text-align: center;
+    position: relative;
+
 }
 
-.infoWrapper {
-    margin-bottom: 0.5rem;
+.poster img {
+    border-radius: var(--card-border-radius);
+    height: auto;
+    margin-bottom: auto;
+    /* width: 100%; */
 }
+
+.notFound {
+    min-height: 231px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--cl-bg-lighter);
+    text-align: center;
+    width: 154px;
+    height: 100%;
+    border-radius: var(--card-border-radius);
+    font-size: 0.8rem;
+}
+
+.poster::after {
+    content: "";
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.poster:hover::after {
+    opacity: 1;
+}
+
+
+.poster:hover .btnsWrapper {
+    pointer-events: unset;
+    opacity: 1;
+}
+
 
 .infoWrapper h3 {
 
@@ -54,6 +85,7 @@
     font-size: 0.8rem;
     text-align: center;
     max-width: 150px;
+    margin-bottom: auto;
 }
 
 .infoWrapper p {
@@ -61,30 +93,24 @@
 }
 
 .btnsWrapper {
-    margin-top: auto;
+    position: absolute;
     align-self: center;
     font-size: 1.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     padding: 0;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
 }
 
-/* 
+
+
 @media (max-width: 768px) {
-    .poster img {
-        max-width: 100px;
+    .movieGrid {
+        justify-content: center;
     }
-
-    .infoWrapper h3 {
-
-        font-size: 0.7rem;
-        max-width: 100px;
-    }
-
-    .btnsWrapper {
-        max-width: 100px;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-    }
-} */
+}

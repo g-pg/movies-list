@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import styles from "./MoviesGrid.module.css";
 import Loading from "../Loading/Loading";
 import Image from "next/image";
 import axios from "axios";
 import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
-import { IoMdTrash, IoMdEye, IoIosCheckbox, IoIosEye } from "react-icons/io";
-import { Toaster, toast } from "react-hot-toast";
+import { IoMdTrash, IoIosCheckbox, IoIosInformationCircle } from "react-icons/io";
+import { toast } from "react-hot-toast";
 
 export default function MoviesGrid({ isLoading, mutate, movies, moviesList }) {
 	if (isLoading) {
@@ -71,56 +71,64 @@ export default function MoviesGrid({ isLoading, mutate, movies, moviesList }) {
 }
 
 export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
-	// const btnColor = { color: "var(--cl-bg)" };
+	const [showBtns, setShowBtns] = useState(false);
+
 	return (
 		<>
-			<div className={styles.cardWrapper}>
+			<div
+				className={styles.cardWrapper}
+				onMouseEnter={() => setShowBtns(true)}
+				onMouseLeave={() => setShowBtns(false)}
+			>
 				<div className={styles.poster}>
 					{movie.poster_path ? (
 						<Image
 							src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
 							width="154"
 							height="223"
-							// fill
-							// object-fit="contain"
 							alt={movie.title}
 						/>
 					) : (
-						<p>Poster indisponível.</p>
+						<div className={styles.notFound}>
+							<p>Poster indisponível.</p>
+						</div>
+					)}
+					{showBtns && (
+						<div className={styles.btnsWrapper}>
+							<SecondaryBtn
+								as="btn"
+								onClick={() => deleteMovie(movie.id)}
+								icon={<IoMdTrash size="1.5rem" />}
+								title="Remover da lista"
+								content={"Remover"}
+								size={"0.7rem"}
+							/>
+
+							{moviesList != "moviesSeen" && (
+								<SecondaryBtn
+									as="btn"
+									icon={<IoIosCheckbox size="1.5rem" />}
+									title="Marcar como assistido"
+									onClick={() => addToSeen(movie.id)}
+									content={"Assistido"}
+									size="0.7rem"
+								/>
+							)}
+
+							<SecondaryBtn
+								as="link"
+								href={`/movie/${movie.id}`}
+								icon={<IoIosInformationCircle size={"1.5rem"} />}
+								title="Mais informações"
+								content={"Informações"}
+								size={"0.7rem"}
+							/>
+							{/* <div className={styles.overlay}></div> */}
+						</div>
 					)}
 				</div>
 				<div className={styles.infoWrapper}>
 					<h3>{movie.title}</h3>
-					{/* <p>{movie.release_date.split("-")[0]}</p> */}
-				</div>
-				<div className={styles.btnsWrapper}>
-					<SecondaryBtn
-						as="btn"
-						onClick={() => deleteMovie(movie.id)}
-						// size={"1.5rem"}
-						icon={<IoMdTrash />}
-						title="Remover da lista"
-						// style={btnColor}
-					/>
-					{moviesList != "moviesSeen" && (
-						<SecondaryBtn
-							as="btn"
-							// onClick={() => deleteMovie(movie.id)}
-							icon={<IoIosCheckbox />}
-							// size={"1.5rem"}
-							title="Marcar como assistido"
-							onClick={() => addToSeen(movie.id)}
-							// style={btnColor}
-						/>
-					)}
-					<SecondaryBtn
-						as="link"
-						href={`/movie/${movie.id}`}
-						// style={btnColor}
-						icon={<IoIosEye />}
-						// size={"1.5rem"}
-						title="Mais informações"
-					/>
 				</div>
 			</div>
 		</>
