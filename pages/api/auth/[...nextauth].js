@@ -44,8 +44,12 @@ export const authOptions = {
 						},
 					});
 
-					if (!user || !user.hashedPassword) {
+					if (!user) {
 						throw new Error("O usuário não existe.");
+					}
+
+					if (!user.hashedPassword) {
+						throw new Error("Parece que você se registrou com outro método.");
 					}
 
 					const isCorrectPassword = await compare(
@@ -54,20 +58,21 @@ export const authOptions = {
 					);
 
 					if (!isCorrectPassword) {
-						throw new Error("Senha inválida.");
+						throw new Error("Senha incorreta.");
 					}
 
 					return user;
 				} catch (error) {
-					throw new Error("Algo deu errado :(");
+					throw new Error(error.message);
 				}
 			},
 		}),
 	],
 
-	// pages: {
-	// 	signIn: "/auth",
-	// },
+	pages: {
+		signIn: "/?auth=true",
+		// error: "/?auth=true",
+	},
 
 	debug: process.env.NODE_ENV === "development",
 

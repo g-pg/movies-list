@@ -24,6 +24,11 @@ export default function AuthModal() {
 		password: "",
 	});
 
+	useEffect(() => {
+		if (router.query.error == "OAuthAccountNotLinked") {
+			setWarning("Parece que você logou com um método diferente da última vez. ");
+		}
+	}, [router.query.error]);
 	function handleChangeFormType(type) {
 		setWarning("warning");
 		setFormType(type);
@@ -62,7 +67,7 @@ export default function AuthModal() {
 			setWarning(error.message);
 		}
 		setIsLoading(false);
-	}, [formData, router]);
+	}, [formData, router, setShowAuthModal]);
 
 	const register = useCallback(async () => {
 		try {
