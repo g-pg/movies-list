@@ -38,7 +38,7 @@ export default function Credits({}) {
 				}
 
 				.social a:hover {
-					color: var(--cl-main-text);
+					color: var(--cl-text);
 				}
 
 				.social a {

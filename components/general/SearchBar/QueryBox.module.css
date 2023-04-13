@@ -49,7 +49,7 @@
 }
 
 .movieInfo h3 {
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     font-size: 1rem;
     margin-right: 10px;
 }

@@ -6,6 +6,7 @@ import styles from "./Header.module.css";
 import { memo, useContext } from "react";
 import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 import { AuthModalContext } from "@/context/AuthModalContext";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 function Header() {
 	const { data: session } = useSession();
@@ -27,6 +28,7 @@ function Header() {
 					>
 						<h1>Muvi</h1>
 					</Link>
+					<ThemeSwitcher />
 					<div style={{ marginLeft: "auto" }}>
 						<DesktopNav user={user} />
 					</div>
@@ -48,7 +50,7 @@ function Header() {
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
-					gap: 2rem;
+					gap: 1rem;
 					padding-block: 0.8rem;
 				}
 

@@ -36,7 +36,7 @@
 .modalWrapper button {
     background: none;
     border: none;
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     font-weight: 700;
     cursor: pointer;
 }
@@ -95,7 +95,7 @@
 
 .disclaimer {
     text-align: center;
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     font-size: 0.6rem;
     margin-top: auto;
 }

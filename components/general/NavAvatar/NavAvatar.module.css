@@ -19,7 +19,7 @@
 }
 
 .avatar>p {
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     text-decoration: none;
     font-size: 1.5rem;
     position: absolute;
@@ -36,7 +36,7 @@
 }
 
 .name {
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     font-weight: 600;
 }
 

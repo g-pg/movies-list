@@ -4,7 +4,7 @@
 .link {
     background: none;
     border: none;
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     text-decoration: none;
     display: flex;
     align-items: center;
