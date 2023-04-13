@@ -62,7 +62,6 @@ export default function SearchBar({ placeholder, mutate, movies }) {
 					<div className={styles.magnifier}>
 						{searchingMovies ? (
 							<Loading
-								// style={{ width: "35px", transform: "translate(10px, -90px)" }}
 								style={{
 									width: "100%",
 									height: "100%",

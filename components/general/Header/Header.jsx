@@ -2,7 +2,6 @@ import Link from "next/link";
 import { DesktopNav, MobileNav } from "../Nav/Nav";
 import { useSession } from "next-auth/react";
 import NavAvatar from "../NavAvatar/NavAvatar";
-import styles from "./Header.module.css";
 import { memo, useContext } from "react";
 import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 import { AuthModalContext } from "@/context/AuthModalContext";

@@ -3,11 +3,6 @@
     grid-template-columns: repeat(auto-fill, 154px);
     width: 100%;
     gap: 1rem;
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* justify-content: center; */
-    /* margin: 0 auto; */
-    /* gap: 1rem; */
     align-content: center;
 
 
@@ -23,7 +18,6 @@
     gap: 0.5rem;
     position: relative;
     margin-bottom: 1.5rem;
-    /* min-height: 288.59px; */
 
 }
 

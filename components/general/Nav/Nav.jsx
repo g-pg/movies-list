@@ -8,6 +8,7 @@ import classNames from "classnames";
 
 import Credits from "../Credits/Credits";
 import useClickOutside from "@/hooks/useClickOutside";
+
 export default function Nav({ user }) {
 	const homeLink = user ? "/user" : "/";
 	return (

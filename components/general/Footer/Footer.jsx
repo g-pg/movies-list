@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { memo } from "react";
 import TmdbLogo from "@/public/tmdb-logo.svg";
 import Credits from "../Credits/Credits";

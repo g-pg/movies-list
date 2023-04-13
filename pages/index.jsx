@@ -2,10 +2,10 @@ import PrimaryLayout from "@components/general/PrimaryLayout/PrimaryLayout";
 import Slider from "@components/pages/Home/Slider/Slider";
 import HeroSection from "@components/pages/Home/HeroSection/HeroSection";
 import Head from "next/head";
-import AuthModal from "@components/general/Auth/AuthModal";
-import { useState, useEffect, useContext } from "react";
+
+import { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Loading from "@/components/general/Loading/Loading";
 import { AuthModalContext } from "@/context/AuthModalContext";
 

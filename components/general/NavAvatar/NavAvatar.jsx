@@ -5,8 +5,6 @@ import styles from "./NavAvatar.module.css";
 import NavSettings from "../NavSettings/NavSettings";
 import useClickOutside from "@/hooks/useClickOutside";
 export default function NavAvatar({ user }) {
-	// const { data: session } = useSession();
-
 	const [showSettings, setShowSettings] = useState(false);
 	const { ref: settingsRef } = useClickOutside(setShowSettings);
 

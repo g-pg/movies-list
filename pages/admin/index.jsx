@@ -28,18 +28,13 @@ export default function TestPage() {
 	const [userFound, setUserFound] = useState("");
 	const router = useRouter();
 	const { data: userLogged, status } = useCurrentUser();
-	console.log(router);
 
 	async function findUser(user) {
 		try {
 			const url = `../api/test?email=${user}`;
 
 			const data = await fetcher(url);
-			// if (data.ok) {
 			setUserFound(data.email);
-			// } else {
-			// throw new Error(data.error);
-			// }
 		} catch (error) {
 			setUserFound(error.response.data.error);
 		}

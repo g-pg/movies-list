@@ -14,7 +14,6 @@ export default function ThemeSwitcher() {
 	}, [theme]);
 	return (
 		<>
-			{/* <button onClick={toggleTheme} title="Alternar tema"></button> */}
 			<div>
 				<SecondaryBtn
 					as="btn"

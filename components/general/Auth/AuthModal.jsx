@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
-import axios from "axios";
 import { useRouter } from "next/router";
+import axios from "axios";
+import styles from "./AuthModal.module.css";
 
 import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import { IoMdClose, IoLogoGithub } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
-import styles from "./AuthModal.module.css";
 import Loading from "../Loading/Loading";
 import { AuthModalContext } from "@/context/AuthModalContext";
 

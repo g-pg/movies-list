@@ -1,8 +1,5 @@
 import React from "react";
-import PrimaryLayout, {
-	PageTitle,
-	PageSubtitle,
-} from "@/components/general/PrimaryLayout/PrimaryLayout";
+import PrimaryLayout, { PageTitle } from "@/components/general/PrimaryLayout/PrimaryLayout";
 import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
 import Loading from "@/components/general/Loading/Loading";
 import useCurrentUser from "@/hooks/useCurrentUser";

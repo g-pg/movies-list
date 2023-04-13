@@ -1,10 +1,7 @@
 import styles from "./HeroSection.module.css";
 import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
-import Image from "next/image";
-import classNames from "classnames";
 
-import gladiatorPoster from "@public/img/gladiator-poster.jpg";
-import matrixPoster from "@public/img/matrix-poster.jpg";
+import classNames from "classnames";
 
 export default function HeroSection({ setShowAuthModal }) {
 	return (
