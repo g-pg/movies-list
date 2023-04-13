@@ -6,11 +6,11 @@ export function Footer() {
 		<>
 			<footer>
 				<div className="container footer-wrapper">
-					{/* <div className="tmdb-logo">
+					<div className="tmdb-logo">
 						<a href="https://www.themoviedb.org/" target="__blank">
 							<TmdbLogo />
 						</a>
-					</div> */}
+					</div>
 					<Credits />
 				</div>
 			</footer>
