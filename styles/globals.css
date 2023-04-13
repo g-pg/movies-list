@@ -5,11 +5,11 @@
 
 body.darkTheme {
 
-    --cl-bg: #141414;
+    --cl-bg: #070707;
     --cl-bg-lighter: #010814;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
-    --cl-text: #FFFFFF;
+    --cl-text: #ebebeb;
     --cl-light-grey: #c7c7c7;
     --cl-inverted: var(--cl-bg);
 }
