@@ -41,16 +41,19 @@ export default function AuthModal() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		if (formData.name.length > 50 || formData.email.length > 50) {
-			return setWarning("Eita! Pode resumir os dados, sô.");
-		}
 
-		if (formData.name.length < 3) {
-			return setWarning("O nome não pode ter menos de 3 caracteres.");
-		}
+		if (formType === "register") {
+			if (formData.name.length > 50 || formData.email.length > 50) {
+				return setWarning("Eita! Pode resumir os dados, sô.");
+			}
 
-		if (formData.password.length < 4) {
-			return setWarning("A senha deve ter no mínimo 4 caracteres.");
+			if (formData.name.length < 3) {
+				return setWarning("O nome não pode ter menos de 3 caracteres.");
+			}
+
+			if (formData.password.length < 4) {
+				return setWarning("A senha deve ter no mínimo 4 caracteres.");
+			}
 		}
 
 		setIsLoading(true);
