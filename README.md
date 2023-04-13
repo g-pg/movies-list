@@ -8,11 +8,11 @@ Na aplicação, o usuário pode criar uma conta para registrar os filmes que já
 <br>
 
 <p *align*="center">
-<img src="readme/desktop-gif.gif" width="30%" alt="Desktop preview"/>
-<img src="readme/desktop-list-gif.gif" width="30%" height="auto" alt="Light theme desktop preview"/>
+<img src="readme/desktop-gif.gif" width="45%" alt="Desktop preview"/>
+<img src="readme/desktop-list-gif.gif" width="45%" height="auto" alt="Light theme desktop preview"/>
 
 </p>
-<p text-align="center">
+<p *align*="center">
 <img src="readme/mobile-list-gif2.gif" alt="Mobile preview"/>
 </p>
 <br>
