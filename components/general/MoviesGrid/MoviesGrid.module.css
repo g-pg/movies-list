@@ -1,6 +1,6 @@
 .movieGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 154px);
+    grid-template-columns: repeat(auto-fill, 145px);
     width: 100%;
     gap: 1rem;
     align-content: center;
@@ -18,7 +18,6 @@
     gap: 0.5rem;
     position: relative;
     margin-bottom: 1.5rem;
-
 }
 
 .poster {
@@ -28,9 +27,11 @@
     text-align: center;
     position: relative;
 
+    /* max-width: 120px; */
 }
 
 .poster img {
+    width: 100%;
     border-radius: var(--card-border-radius);
     height: auto;
     margin-bottom: auto;
@@ -38,7 +39,7 @@
 }
 
 .notFound {
-    min-height: 231px;
+    min-height: 217px;
     display: flex;
     justify-content: center;
     align-items: center;

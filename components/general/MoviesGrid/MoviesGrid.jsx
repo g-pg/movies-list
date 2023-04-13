@@ -83,9 +83,9 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 				<div className={styles.poster}>
 					{movie.poster_path ? (
 						<Image
-							src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
-							width="154"
-							height="223"
+							src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+							width="256"
+							height="384"
 							alt={movie.title}
 						/>
 					) : (
