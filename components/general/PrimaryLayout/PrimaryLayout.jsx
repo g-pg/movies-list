@@ -115,6 +115,7 @@ export function ParagraphTitle({ children, style, tag, id }) {
 						color: var(--cl-text);
 						margin-top: 2rem;
 						margin-bottom: 0.5rem;
+						scroll-margin-top: 5px;
 					}
 
 					h4 {
@@ -153,7 +154,6 @@ export function ParagraphLink({ children, style, href, target }) {
 						transition: all 1s ease;
 						position: relative;
 						cursor: pointer;
-						transform: translateZ(0);
 					}
 
 					a::after {
