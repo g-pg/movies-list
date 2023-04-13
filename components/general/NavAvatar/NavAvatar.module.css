@@ -49,7 +49,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-width: 250px;
-    min-height: 180px;
+    min-height: 120px;
     z-index: 1000;
     padding: 1.5rem;
     position: absolute;

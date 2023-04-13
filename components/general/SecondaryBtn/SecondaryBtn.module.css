@@ -1,7 +1,6 @@
 /* Btns */
 
-.btn,
-.link {
+.btn {
     background: none;
     border: none;
     color: var(--cl-text);
@@ -12,26 +11,23 @@
     padding: 0;
     cursor: pointer;
     font-weight: 600;
-
 }
 
-.btn svg,
-.link svg {
+.btn svg {
     /* font-size: 1.2rem; */
     color: var(--cl-accent);
     color: inherit;
 }
 
-.btn:hover,
-.link:hover {
+.btn:hover {
     color: var(--cl-accent);
 }
 
-/* .link {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    text-decoration: none;
+.btn.contrast {
+    color: white;
+}
+
+.btn.contrast:hover {
+
     color: var(--cl-accent);
-    font-size: 0.8rem;
-} */
+}

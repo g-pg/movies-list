@@ -6,13 +6,13 @@ import { signOut } from "next-auth/react";
 export default function NavSettings() {
 	return (
 		<div>
-			<SecondaryBtn
+			{/* <SecondaryBtn
 				icon={<IoSettings />}
 				content={"Configurações"}
 				as="link"
 				href="#"
 				size="0.8rem"
-			/>
+			/> */}
 			<SecondaryBtn
 				icon={<IoLogOut />}
 				content={"Sair"}

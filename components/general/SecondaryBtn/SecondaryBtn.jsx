@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./SecondaryBtn.module.css";
+import classNames from "classnames";
 export default function SecondaryBtn({
 	as,
 	icon,
@@ -11,11 +12,12 @@ export default function SecondaryBtn({
 	size,
 	style,
 	target,
+	contrast,
 }) {
 	if (as === "btn") {
 		return (
 			<button
-				className={styles.btn}
+				className={classNames(styles.btn, contrast && styles.contrast)}
 				onClick={onClick}
 				style={{ fontSize: size, ...style }}
 				title={title}
@@ -25,12 +27,11 @@ export default function SecondaryBtn({
 			</button>
 		);
 	}
-
 	if (as === "link") {
 		return (
 			<>
 				<Link
-					className={styles.link}
+					className={classNames(styles.btn, contrast && styles.contrast)}
 					href={href || "#"}
 					target={target}
 					style={{ fontSize: size, ...style }}

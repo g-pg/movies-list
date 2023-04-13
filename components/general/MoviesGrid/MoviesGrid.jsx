@@ -103,6 +103,7 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 									onClick={() => addToSeen(movie.id)}
 									content={"Assistido"}
 									size="0.7rem"
+									contrast="true"
 								/>
 							)}
 							<SecondaryBtn
@@ -112,6 +113,7 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 								title="Mais informações"
 								content={"Informações"}
 								size={"0.7rem"}
+								contrast="true"
 							/>
 							<SecondaryBtn
 								as="btn"
@@ -120,6 +122,7 @@ export function MovieCard({ movie, deleteMovie, addToSeen, moviesList }) {
 								title="Remover da lista"
 								content={"Remover"}
 								size={"0.7rem"}
+								contrast="true"
 							/>
 						</div>
 					)}

@@ -11,7 +11,7 @@
     align-self: center;
     background: none;
     border-radius: 16px;
-    border: 1px solid var(--cl-accent);
+    border: 2px solid var(--cl-accent);
     color: var(--cl-text);
     padding: 0.5rem 1rem;
 

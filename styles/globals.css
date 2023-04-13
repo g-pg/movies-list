@@ -1,17 +1,17 @@
 :root {
 
     /* Light */
-    --cl-bg: #fefefe;
+    --cl-bg: #f5f5f5;
     --cl-bg-lighter: #ffffff;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
-    --cl-text: #0c0c0c;
+    --cl-text: #050505;
     --cl-light-grey: #808080;
 }
 
 body.darkTheme {
 
-    --cl-bg: #0a0a0a;
+    --cl-bg: #141414;
     --cl-bg-lighter: #010814;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
