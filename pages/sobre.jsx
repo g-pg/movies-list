@@ -22,7 +22,13 @@ export default function sobre() {
 							nome era curto e legal o suficiente para soar como uma marca) é
 							mais uma daquelas aplicações de estudos baseadas em listas de
 							usuário. <br />
-							<br /> É, sobretudo, o resultado de duas semanas de leitura de
+							<br /> Na aplicação, o usuário pode criar uma conta para
+							registrar os filmes que já assistiu e aqueles que quer assistir.
+							Os dados dos filmes são providenciados pela TMDB, mas as contas e
+							listas de usuário estão guardadas em servidor próprio.
+							<br />
+							<br />
+							É, sobretudo, o resultado de duas semanas de leitura de
 							documentações para aprender como manejar autenticações e
 							databases.
 						</PageText>
