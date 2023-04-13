@@ -31,6 +31,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 			<Head>
 				{/* META TAGS */}
 				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+				<meta
+					name="description"
+					content="Por que perder aquela recomendação se você pode anotar tudo aqui? Registre os filmes que você quer ver e nunca mais perca tempo procurando o que assistir!"
+					key="desc"
+				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta property="og:title" content="Muvi" />
 				<meta
@@ -39,7 +44,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 				/>
 				<meta
 					property="og:image"
-					content="https://raw.githubusercontent.com/g-pg/movies-list/test/readme/desktop-preview.png"
+					content="https://raw.githubusercontent.com/g-pg/muvi/test/readme/desktop-preview.png"
 				/>
 			</Head>
 			<SessionProvider session={session}>
