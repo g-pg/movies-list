@@ -44,6 +44,15 @@ export default function AuthModal() {
 		if (formData.name.length > 50 || formData.email.length > 50) {
 			return setWarning("Eita! Pode resumir os dados, sô.");
 		}
+
+		if (formData.name.length < 3) {
+			return setWarning("O nome não pode ter menos de 3 caracteres.");
+		}
+
+		if (formData.password.length < 4) {
+			return setWarning("A senha deve ter no mínimo 4 caracteres.");
+		}
+
 		setIsLoading(true);
 		if (formType === "register") {
 			register();
@@ -56,10 +65,11 @@ export default function AuthModal() {
 		try {
 			setIsLoading(true);
 			const res = await signIn("credentials", {
-				email: formData.email,
-				password: formData.password,
+				email: formData.email.trim(),
+				password: formData.password.trim(),
 				redirect: false,
 			});
+
 			if (res.ok) {
 				router.push("/user");
 				setShowAuthModal(false);
