@@ -1,18 +1,33 @@
 :root {
-    /* Dark */
+
+    /* Light */
+    --cl-bg: #fefefe;
+    --cl-bg-lighter: #ffffff;
+    --cl-accent: #F72585;
+    --cl-sec-accent: #7e47ff;
+    --cl-text: #0c0c0c;
+    --cl-light-grey: #808080;
+}
+
+body.darkTheme {
+
     --cl-bg: #0a0a0a;
     --cl-bg-lighter: #010814;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
-    --cl-main-text: #FFFFFF;
+    --cl-text: #FFFFFF;
     --cl-light-grey: #c7c7c7;
-
 }
+
 
 body {
     background: var(--cl-bg);
-    color: var(--cl-main-text);
+    color: var(--cl-text);
     font-family: 'Inter';
+}
+
+body.dark {
+    background: white;
 }
 
 .container {

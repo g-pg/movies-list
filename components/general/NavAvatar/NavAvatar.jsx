@@ -20,7 +20,7 @@ export default function NavAvatar({ user }) {
 				{user && user.image ? (
 					<Image src={user.image} alt={user.name} fill />
 				) : (
-					<p>{user.name[0]}</p>
+					<p style={{ color: "white" }}>{user.name[0]}</p>
 				)}
 			</button>
 			{showSettings && (
