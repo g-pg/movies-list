@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 import { TbSunFilled, TbMoonStars } from "react-icons/tb";
 export default function ThemeSwitcher() {
-	const [theme, setTheme] = useState(localStorage.getItem("theme") || "darkTheme");
+	const [theme, setTheme] = useState(
+		typeof window !== "undefined" ? localStorage.getItem("theme") || "darkTheme" : "darkTheme"
+	);
 
 	function toggleTheme() {
 		setTheme((prev) => (prev === "darkTheme" ? "lightTheme" : "darkTheme"));
