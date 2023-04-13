@@ -86,6 +86,16 @@ export default function AuthModal() {
 		setIsLoading(false);
 	}, [formData, login]);
 
+	async function handleOAuth(provider) {
+		try {
+			setIsLoading(true);
+			await signIn(provider, { callbackUrl: "/user" });
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
+	}
 	return (
 		<>
 			<div className={styles.modalWrapper}>
@@ -144,16 +154,16 @@ export default function AuthModal() {
 					// 	formType === "register" ? { opacity: "0", pointerEvents: "none" } : {}
 					// }
 				>
-					<button onClick={() => signIn("google", { callbackUrl: "/user" })}>
+					<button onClick={() => handleOAuth("google")}>
 						<FcGoogle />
 					</button>
-					<button onClick={() => signIn("github", { callbackUrl: "/user" })}>
+					<button onClick={() => handleOAuth("github")}>
 						<IoLogoGithub />
 					</button>
 				</div>
 				<p className={styles.disclaimer}>
-					* Esta é uma aplicação de estudos. Todos os dados serão deletados em 7 dias
-					a partir do registro.
+					* Esta é uma aplicação de estudos. A senha é criptografada. Todos os dados
+					podem ser deletados sem aviso prévio.
 				</p>
 				<button onClick={() => setShowAuthModal(false)} className={styles.closeBtn}>
 					<IoMdClose style={{ fontSize: "1.8rem" }} />

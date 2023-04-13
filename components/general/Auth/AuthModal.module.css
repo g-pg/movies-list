@@ -11,6 +11,7 @@
     align-items: center;
     gap: 1rem;
     background: var(--cl-bg);
+    background: var(--cl-bg-lighter);
     padding: 1rem;
     border: 1px solid var(--cl-accent);
     border-radius: 16px;
@@ -85,11 +86,12 @@
     color: black;
     font-size: 2rem;
     width: 100%;
-
+    border: 1px solid transparent;
+    border: 1px solid var(--cl-text);
 }
 
 .socialLoginWrapper button:hover {
-    background: #f3f3f3
+    border: 1px solid var(--cl-accent);
 }
 
 .disclaimer {
@@ -97,6 +99,7 @@
     color: var(--cl-text);
     font-size: 0.6rem;
     margin-top: auto;
+    max-width: 60%;
 }
 
 .overlay {
@@ -117,10 +120,14 @@
     width: 1.8rem;
     transform: translateY(-40px);
     font-size: 1.8rem;
+
+}
+
+.closeBtn svg {
     color: white;
 }
 
-.closeBtn:hover {
+.closeBtn:hover svg {
     color: var(--cl-accent)
 }
 
