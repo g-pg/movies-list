@@ -191,6 +191,23 @@ export function Highlight({ children, style }) {
 	);
 }
 
+export function UList({ children, style }) {
+	return (
+		<>
+			<ul style={style}>{children}</ul>
+			<style jsx>
+				{`
+					ul li {
+						color: var(--cl-text);
+					}
+					ul :global(li::marker) {
+						color: var(--cl-accent);
+					}
+				`}
+			</style>
+		</>
+	);
+}
 export function TextContainer({ children }) {
 	return (
 		<>
