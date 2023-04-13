@@ -5,6 +5,7 @@ import PrimaryLayout, {
 	ParagraphLink,
 	ParagraphTitle,
 	TextContainer,
+	UList,
 } from "@/components/general/PrimaryLayout/PrimaryLayout";
 import React from "react";
 
@@ -26,14 +27,15 @@ export default function sobre() {
 						</PageText>
 						<ParagraphTitle tag="h4">#Stack</ParagraphTitle>
 						<PageText>A stack utilizada foi:</PageText>
-						<ul style={{ color: "var(--cl-accent)" }}>
+						<UList>
 							<li>NextJS</li>
 							<li>NextAuth</li>
 							<li>Prisma</li>
 							<li>MongoDB</li>
 							<li>SWR</li>
 							<li>The Movie Database (TMDB)</li>
-						</ul>
+						</UList>
+
 						<PageText>
 							<br />O código está disponível{" "}
 							<ParagraphLink href="https://github.com/g-pg/movies-list">

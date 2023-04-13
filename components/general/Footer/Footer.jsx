@@ -19,7 +19,6 @@ export function Footer() {
 			<style jsx>{`
 				footer {
 					margin-top: auto;
-					background: black;
 				}
 
 				.footer-wrapper {
