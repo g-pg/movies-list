@@ -21,7 +21,8 @@ export default function sobre() {
 							<Highlight>Muvi</Highlight> (que eu decidi chamar assim porque o
 							nome era curto e legal o suficiente para soar como uma marca) é
 							mais uma daquelas aplicações de estudos baseadas em listas de
-							usuário. É, sobretudo, o resultado de duas semanas de leitura de
+							usuário. <br />
+							<br /> É, sobretudo, o resultado de duas semanas de leitura de
 							documentações para aprender como manejar autenticações e
 							databases.
 						</PageText>
@@ -85,34 +86,39 @@ export default function sobre() {
 						</ParagraphTitle>
 						<PageText>
 							O NextAuth é uma library de autenticação de usuário criada para o
-							Next. Ela oferece suporte para autenticação com credenciais
-							(usuário e senha) e OAuth com outros providers. Nesta aplicação,
-							utilizei os providers do Google e do Github. Além disso, o
-							NextAuth conta com suporte para o Prisma, facilitando o registro
-							das informações na database.
+							Next. Ela oferece suporte para autenticação com credenciais e
+							OAuth com outros providers. Nesta aplicação, utilizei os
+							providers do Google e do Github. Além disso, o NextAuth conta com
+							suporte para o Prisma, o que facilita o registro das informações
+							na database.
 						</PageText>
 						<ParagraphTitle tag="h4" id="mongodb">
 							#MongoDB
 						</ParagraphTitle>
 						<PageText>
-							MongoDB é um sistema de organização de database NoSQL. A
-							estrutura básica é feita de Collections e Documents, em que cada
-							Document é um objeto JSON (um usuário) e cada Document um grupo
-							de Collections.
+							MongoDB é um sistema open source de organização de database
+							NoSQL. A estrutura básica é feita de Collections (análogas às
+							tables do SQL) e Documents. Uma Collection é um grupo de
+							Documents, e um Document contém objetos individuais (como um
+							usuário, por exemplo).
 						</PageText>
 						<ParagraphTitle tag="h4" id="prisma">
 							#Prisma
 						</ParagraphTitle>
 						<PageText>
 							Prisma é uma ferramente de ORM (Object-Relational Mapping), isto
-							é, um recurso para estruturar e operar databases. A estruturação
-							da database é feita através de um <Highlight>esquema</Highlight>,
-							que é depois integrado ao sistema escolhido. Em outras palavras,
-							pode-se utilizar o Prisma para definir (e tipar, pois o Prisma
-							utiliza Typescript) os campos de cada documento na database, como
-							e-mail (string), senha (string) ou lista de filmes (array), e
-							também declarar as relações entre campos, documentos e coleções
-							(atrelar um ID de usuário a uma coleção de filmes, por exemplo).
+							é, um recurso para estruturar e operar databases. Ele oferece,
+							além disso, um cliente para manipular e consultar a database
+							gerada.
+							<br />
+							<br />A estruturação é feita através de um{" "}
+							<Highlight>esquema</Highlight>, que é depois integrado ao sistema
+							escolhido. Em outras palavras, pode-se utilizar o Prisma para
+							definir (e tipar, pois o Prisma utiliza Typescript) os campos de
+							cada documento na database, como e-mail (string), senha (string)
+							ou lista de filmes (array), e também declarar as relações entre
+							campos, documentos e coleções (atrelar um ID de usuário a uma
+							coleção de filmes, por exemplo).
 							<br />
 							<br />
 							Alguns documentos foram criados com base nos dados recebidos da
@@ -124,9 +130,9 @@ export default function sobre() {
 							#SWR
 						</ParagraphTitle>
 						<PageText>
-							SWR é (um presente dos céus) uma técnica de data-fetching criada
-							pela Vercel, a mesma companhia por trás do Next. Através do hook
-							useSWR é possível salvar os dados recebidos de uma API e
+							SWR é <s>um presente dos céus</s> uma técnica de data-fetching
+							criada pela Vercel, a mesma companhia por trás do Next. Através
+							do hook useSWR é possível salvar os dados recebidos de uma API e
 							guardá-los em um cache no cliente, compartilhado por toda a
 							aplicação e revalidado automaticamente (ou conforme as nossas
 							especificações).
