@@ -163,7 +163,7 @@ export default function sobre() {
 							</ParagraphLink>
 							. As listas do usuário na database guardam apenas os IDs dos
 							filmes. Fiz esta escolha para evitar sobrecarregar a database
-							(muitas vezes desnecessários para o meu propósito).
+							(com dados muitas vezes desnecessários para o meu propósito).
 							<br />
 							<br />
 							Um dos problemas atuais da TMDB é a impossibilidade de se fazer
