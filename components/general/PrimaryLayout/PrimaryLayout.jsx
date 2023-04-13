@@ -103,11 +103,13 @@ export function PageText({ children, style }) {
 	);
 }
 
-export function ParagraphTitle({ children, style, tag }) {
+export function ParagraphTitle({ children, style, tag, id }) {
 	const Tag = tag || "h4";
 	return (
 		<>
-			<Tag style={style}>{children}</Tag>
+			<Tag style={style} id={id}>
+				{children}
+			</Tag>
 			<style jsx>
 				{`
 					${Tag} {
@@ -136,10 +138,10 @@ export function ParagraphTitle({ children, style, tag }) {
 	);
 }
 
-export function ParagraphLink({ children, style, href }) {
+export function ParagraphLink({ children, style, href, target }) {
 	return (
 		<>
-			<a href={href} target="_blank" className="link">
+			<a href={href} target={target} className="link">
 				{children}
 			</a>
 			<style jsx>
@@ -152,25 +154,23 @@ export function ParagraphLink({ children, style, href }) {
 						transition: all 1s ease;
 						position: relative;
 						cursor: pointer;
+						transform: translateZ(0);
 					}
 
 					a::after {
 						content: "";
 						position: absolute;
-						width: 100%;
+						bottom: -2px;
+						left: 0;
+						width: 0;
 						height: 1px;
-						background: var(--cl-accent);
-						bottom: -1px;
-						left: 0px;
-						transition: all 0.3s ease;
-						transform: scaleX(0);
-						transform-origin: 0 0;
-						/* opacity: 0; */
+						background-color: var(--cl-accent);
+						box-shadow: 0 0 1px var(--cl-accent);
+						transition: width 0.3s ease;
 					}
 
 					a:hover::after {
-						transform: scaleX(1);
-						transform-origin: 0 0;
+						width: 100%;
 					}
 				`}
 			</style>
