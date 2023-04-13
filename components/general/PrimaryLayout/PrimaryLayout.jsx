@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { AuthModalContext } from "@/context/AuthModalContext";
@@ -7,6 +7,13 @@ import { Toaster } from "react-hot-toast";
 
 export default function PrimaryLayout({ children, user }) {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
+	const [headerHeight, setHeaderHeight] = useState("");
+
+	// useEffect(() => {
+	// 	const height = document.getElementsByClassName("header-wrapper")[0].clientHeight;
+	// 	setHeaderHeight(height);
+	// }, []);
+
 	return (
 		<>
 			<div>
@@ -24,6 +31,12 @@ export default function PrimaryLayout({ children, user }) {
 						justify-content: space-between;
 						gap: 2rem;
 					}
+
+					// @media (max-width: 768px) {
+					// 	:global(.container) {
+					// 		padding-top: ${headerHeight}px;
+					// 	}
+					// }
 				`}</style>
 			</div>
 		</>
@@ -141,7 +154,7 @@ export function ParagraphTitle({ children, style, tag, id }) {
 export function ParagraphLink({ children, style, href, target }) {
 	return (
 		<>
-			<a href={href} target={target} className="link">
+			<a href={href} target={target}>
 				{children}
 			</a>
 			<style jsx>
@@ -167,7 +180,6 @@ export function ParagraphLink({ children, style, href, target }) {
 						box-shadow: 0 0 1px var(--cl-accent);
 						transition: width 0.3s ease;
 					}
-
 					a:hover::after {
 						width: 100%;
 					}

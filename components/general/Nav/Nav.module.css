@@ -90,10 +90,8 @@
     .burgerMenu {
         position: absolute;
         z-index: 1000;
-        height: calc(100dvh - 72px);
         width: 100vw;
         background: var(--cl-bg);
-        top: 72px;
         left: 0;
         padding: 2rem;
         transform: translateX(-100%);

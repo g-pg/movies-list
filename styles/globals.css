@@ -47,5 +47,6 @@ body.dark {
     .container {
         width: 100%;
         padding-inline: 1rem;
+        /* padding-top: 66px; */
     }
 }

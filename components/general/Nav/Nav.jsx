@@ -39,7 +39,7 @@ export function DesktopNav({ user }) {
 	);
 }
 
-export function MobileNav({ user }) {
+export function MobileNav({ user, headerHeight }) {
 	const [showBurger, setShowBurger] = useState(false);
 	const { ref: burgerMenuRef } = useClickOutside(setShowBurger);
 	useEffect(() => {
@@ -60,8 +60,13 @@ export function MobileNav({ user }) {
 			>
 				<div className={classNames(styles.burgerLine)}></div>
 			</button>
-			{/* {showBurger && ( */}
-			<div className={classNames(styles.burgerMenu, styles.active)}>
+			<div
+				className={classNames(styles.burgerMenu, styles.active)}
+				style={{
+					top: `${headerHeight - 1}px`,
+					height: `calc(100dvh - ${headerHeight}px)`,
+				}}
+			>
 				<div onClick={() => setShowBurger((prev) => !prev)}>
 					<Nav user={user} />
 				</div>
