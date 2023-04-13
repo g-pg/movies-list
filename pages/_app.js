@@ -44,7 +44,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 				/>
 				<meta
 					property="og:image"
-					content="https://raw.githubusercontent.com/g-pg/muvi/test/readme/desktop-preview.png"
+					content="https://raw.githubusercontent.com/g-pg/muvi/main/readme/desktop-preview.png"
 				/>
 			</Head>
 			<SessionProvider session={session}>

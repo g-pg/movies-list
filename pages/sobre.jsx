@@ -62,7 +62,7 @@ export default function Sobre() {
 						<PageText>
 							<br />O código está disponível{" "}
 							<ParagraphLink
-								href="https://github.com/g-pg/movies-list"
+								href="https://github.com/g-pg/muvi"
 								target="_blank"
 							>
 								neste repositório
@@ -193,7 +193,7 @@ export default function Sobre() {
 							estou muito contente com o resultado. Se você perceber qualquer
 							otimização possível na aplicação, passe lá no{" "}
 							<ParagraphLink
-								href="https://github.com/g-pg/movies-list"
+								href="https://github.com/g-pg/muvi"
 								target="_blank"
 							>
 								repositório
