@@ -9,7 +9,7 @@ import PrimaryLayout, {
 } from "@/components/general/PrimaryLayout/PrimaryLayout";
 import React from "react";
 
-export default function sobre() {
+export default function Sobre() {
 	return (
 		<>
 			<PrimaryLayout>
