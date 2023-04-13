@@ -49,15 +49,24 @@
     z-index: 999;
     top: 0;
     left: 0;
+    right: 0;
 }
 
 .wrapper::before {
-
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(0deg, var(--cl-inverted) 1%, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0) 95%, var(--cl-inverted) 100%);
 }
 
 .wrapper::after {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(180deg, var(--cl-inverted) 1%, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0) 95%, var(--cl-inverted) 100%);
 }
+
+/* .wrapper::before {
+
+    background: var(--cl-inverted);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 95%, var(--cl-inverted) 100%);
+}
+
+.wrapper::after {
+    background: var(--cl-inverted);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 95%, var(--cl-inverted) 100%);
+} */
