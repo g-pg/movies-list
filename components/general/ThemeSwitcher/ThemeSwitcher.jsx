@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 import { TbSunFilled, TbMoonStars } from "react-icons/tb";
 export default function ThemeSwitcher() {
-	const [darkTheme, setDarkTheme] = useState(true);
+	const [theme, setTheme] = useState(localStorage.getItem("theme") || "darkTheme");
 
 	function toggleTheme() {
-		setDarkTheme(!darkTheme);
-		document.body.classList.toggle("darkTheme");
+		setTheme((prev) => (prev === "darkTheme" ? "lightTheme" : "darkTheme"));
 	}
 
+	useEffect(() => {
+		localStorage.setItem("theme", theme);
+		document.body.className = theme;
+	}, [theme]);
 	return (
 		<>
 			{/* <button onClick={toggleTheme} title="Alternar tema"></button> */}
@@ -17,7 +20,7 @@ export default function ThemeSwitcher() {
 					as="btn"
 					onClick={toggleTheme}
 					size="1.2rem"
-					icon={darkTheme ? <TbSunFilled /> : <TbMoonStars />}
+					icon={theme === "darkTheme" ? <TbMoonStars /> : <TbSunFilled />}
 				/>
 			</div>
 			<style jsx>
