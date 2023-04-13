@@ -27,24 +27,45 @@ export default function sobre() {
 						</PageText>
 						<ParagraphTitle tag="h4">#Stack</ParagraphTitle>
 						<PageText>A stack utilizada foi:</PageText>
-						<UList>
-							<li>NextJS</li>
-							<li>NextAuth</li>
-							<li>Prisma</li>
-							<li>MongoDB</li>
-							<li>SWR</li>
-							<li>The Movie Database (TMDB)</li>
+						<UList
+							style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+						>
+							<li>
+								<ParagraphLink href="#nextjs">NextJS</ParagraphLink>
+							</li>
+							<li>
+								<ParagraphLink href="#nextauth">NextAuth</ParagraphLink>
+							</li>
+							<li>
+								<ParagraphLink href="#prisma">Prisma</ParagraphLink>
+							</li>
+							<li>
+								<ParagraphLink href="#mongodb">MongoDB</ParagraphLink>
+							</li>
+							<li>
+								<ParagraphLink href="#swr">SWR</ParagraphLink>
+							</li>
+							<li>
+								<ParagraphLink href="#tmdb">
+									The Movie Database (TMDB)
+								</ParagraphLink>
+							</li>
 						</UList>
 
 						<PageText>
 							<br />O código está disponível{" "}
-							<ParagraphLink href="https://github.com/g-pg/movies-list">
+							<ParagraphLink
+								href="https://github.com/g-pg/movies-list"
+								target="_blank"
+							>
 								neste repositório
 							</ParagraphLink>{" "}
 							no Github.
 							<br />
 						</PageText>
-						<ParagraphTitle tag="h4">#NextJs</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="nextjs">
+							#NextJs
+						</ParagraphTitle>
 						<PageText>
 							A escolha do Next como framework foi baseada na facilidade de
 							criações de rotas API na própria aplicação, isto é, sem a
@@ -59,7 +80,9 @@ export default function sobre() {
 							que vem muito a calhar em uma aplicação que mostra dezenas de
 							imagens (pôsteres) em cada página.
 						</PageText>
-						<ParagraphTitle tag="h4">#NextAuth</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="nextauth">
+							#NextAuth
+						</ParagraphTitle>
 						<PageText>
 							O NextAuth é uma library de autenticação de usuário criada para o
 							Next. Ela oferece suporte para autenticação com credenciais
@@ -68,14 +91,18 @@ export default function sobre() {
 							NextAuth conta com suporte para o Prisma, facilitando o registro
 							das informações na database.
 						</PageText>
-						<ParagraphTitle tag="h4">#MongoDB</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="mongodb">
+							#MongoDB
+						</ParagraphTitle>
 						<PageText>
 							MongoDB é um sistema de organização de database NoSQL. A
 							estrutura básica é feita de Collections e Documents, em que cada
 							Document é um objeto JSON (um usuário) e cada Document um grupo
 							de Collections.
 						</PageText>
-						<ParagraphTitle tag="h4">#Prisma</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="prisma">
+							#Prisma
+						</ParagraphTitle>
 						<PageText>
 							Prisma é uma ferramente de ORM (Object-Relational Mapping), isto
 							é, um recurso para estruturar e operar databases. A estruturação
@@ -93,7 +120,9 @@ export default function sobre() {
 							criado para guardar informações mais específicas, como as listas
 							de filmes assistidos e não assistidos.
 						</PageText>
-						<ParagraphTitle tag="h4">#SWR</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="swr">
+							#SWR
+						</ParagraphTitle>
 						<PageText>
 							SWR é (um presente dos céus) uma técnica de data-fetching criada
 							pela Vercel, a mesma companhia por trás do Next. Através do hook
@@ -117,13 +146,18 @@ export default function sobre() {
 							aplicação, é possível alterar o cache sem precisar criar
 							contextos ou passar props através de inúmeros componentes.
 						</PageText>
-						<ParagraphTitle tag="h4">#The Movie Database</ParagraphTitle>
+						<ParagraphTitle tag="h4" id="tmdb">
+							#The Movie Database
+						</ParagraphTitle>
 						<PageText>
 							Todos os dados dos filmes são obtidos client-side através da API
-							da The Movie Database. As listas do usuário na database guardam
-							apenas os IDs dos filmes. Fiz esta escolha para evitar
-							supercarregar a database com dados (muitas vezes desnecessários
-							para o meu propósito).
+							da{" "}
+							<ParagraphLink href="https://www.themoviedb.org/documentation/api">
+								The Movie Database
+							</ParagraphLink>
+							. As listas do usuário na database guardam apenas os IDs dos
+							filmes. Fiz esta escolha para evitar sobrecarregar a database
+							(muitas vezes desnecessários para o meu propósito).
 							<br />
 							<br />
 							Um dos problemas atuais da TMDB é a impossibilidade de se fazer
@@ -146,7 +180,10 @@ export default function sobre() {
 							Confesso que aprender tudo isso foi um baita de um desafio, mas
 							estou muito contente com o resultado. Se você perceber qualquer
 							otimização possível na aplicação, passe lá no{" "}
-							<ParagraphLink href="https://github.com/g-pg/movies-list">
+							<ParagraphLink
+								href="https://github.com/g-pg/movies-list"
+								target="_blank"
+							>
 								repositório
 							</ParagraphLink>{" "}
 							ou entre em contato comigo. Vou ficar muito feliz em aprender
