@@ -16,7 +16,7 @@ export default function ThemeSwitcher() {
 		setTheme(newTheme);
 	}
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		document.body.className = theme;
 	}, [theme]);
 
