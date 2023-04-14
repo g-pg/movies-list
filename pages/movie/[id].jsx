@@ -10,7 +10,8 @@ import PrimaryBtn from "@/components/general/PrimaryBtn/PrimaryBtn";
 import addMovie from "@/lib/addMovie";
 import SecondaryBtn from "@/components/general/SecondaryBtn/SecondaryBtn";
 import { useSession } from "next-auth/react";
-
+import { checkIfSeen } from "@/lib/checkIfSeen";
+import useCurrentUser from "@/hooks/useCurrentUser";
 export default function MovieDetails() {
 	const router = useRouter();
 	const { id } = router.query;
@@ -21,6 +22,8 @@ export default function MovieDetails() {
 			router.push("/?auth=true");
 		},
 	});
+
+	const { data: user } = useCurrentUser();
 
 	useEffect(() => {
 		async function getMovieInfo() {
@@ -96,12 +99,24 @@ export default function MovieDetails() {
 							</p>
 							<p className="info-general">{movie.overview}</p>
 							<div className="btn">
-								<PrimaryBtn
-									style={{ marginTop: "auto" }}
-									onClick={handleAddMovie}
-								>
-									Adicionar
-								</PrimaryBtn>
+								{!checkIfSeen(user, id) ? (
+									<PrimaryBtn
+										style={{ marginTop: "auto" }}
+										onClick={handleAddMovie}
+									>
+										Adicionar
+									</PrimaryBtn>
+								) : (
+									<PrimaryBtn
+										style={{
+											marginTop: "auto",
+											background: "var(--cl-green)",
+											cursor: "unset",
+										}}
+									>
+										Visto
+									</PrimaryBtn>
+								)}
 							</div>
 						</div>
 					</section>

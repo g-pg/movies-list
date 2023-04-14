@@ -9,6 +9,7 @@ body.darkTheme {
     --cl-bg-lighter: #010814;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
+    --cl-green: #5abb00;
     --cl-text: #ebebeb;
     --cl-light-grey: #c7c7c7;
     --cl-inverted: var(--cl-bg);
@@ -20,6 +21,7 @@ body.lightTheme {
     --cl-bg-lighter: #ffffff;
     --cl-accent: #F72585;
     --cl-sec-accent: #7e47ff;
+    --cl-green: #30a800;
     --cl-text: #050505;
     --cl-light-grey: #808080;
     --cl-inverted: var(--cl-bg);

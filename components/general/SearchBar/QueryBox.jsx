@@ -2,12 +2,15 @@ import React from "react";
 import styles from "./QueryBox.module.css";
 import Image from "next/image";
 import SecondaryBtn from "@components/general/SecondaryBtn/SecondaryBtn";
-import { MdAddBox, MdArrowForward, MdCalendarMonth, MdStar } from "react-icons/md";
+import { MdAddBox, MdArrowForward, MdCalendarMonth, MdCheckBox, MdStar } from "react-icons/md";
 import addMovie from "@/lib/addMovie";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { checkIfSeen } from "@/lib/checkIfSeen";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function QueryBox({ list, movies, setShowResults, mutate }) {
+	const { data: user } = useCurrentUser();
 	function sliceDescription(text) {
 		if (text.length > 130) {
 			let lastSpaceIndex = 0;
@@ -77,13 +80,27 @@ export default function QueryBox({ list, movies, setShowResults, mutate }) {
 									<p>{sliceDescription(el.overview)}</p>
 								</div>
 								<div className={styles.actions}>
-									<SecondaryBtn
-										as="btn"
-										icon={<MdAddBox />}
-										size="2rem"
-										style={{ color: "var(--cl-accent)" }}
-										onClick={() => handleAddMovie(el.id, el)}
-									/>
+									{checkIfSeen(user, el.id) ? (
+										<SecondaryBtn
+											as="btn"
+											icon={<MdCheckBox />}
+											size="2rem"
+											style={{
+												color: "var(--cl-green)",
+												cursor: "unset",
+											}}
+											title="Assistido!"
+										/>
+									) : (
+										<SecondaryBtn
+											as="btn"
+											icon={<MdAddBox />}
+											size="2rem"
+											style={{ color: "var(--cl-accent)" }}
+											onClick={() => handleAddMovie(el.id, el)}
+											title="Adicionar filme"
+										/>
+									)}
 
 									<SecondaryBtn
 										as="link"

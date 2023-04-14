@@ -53,7 +53,7 @@ export default function UserPage() {
 					<PageTitle>Olá, {user?.name.split(" ")[0]}!</PageTitle>
 
 					{movies?.length < 1 ? (
-						<PageSubtitle>Adicione o primeiro filme!</PageSubtitle>
+						<PageSubtitle>Guarde um filme na sua lista!</PageSubtitle>
 					) : (
 						<PageSubtitle>
 							Você tem <Highlight>{movies?.length}</Highlight> filme
