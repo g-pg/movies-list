@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { AuthModalContext } from "@/context/AuthModalContext";
@@ -7,12 +7,6 @@ import { Toaster } from "react-hot-toast";
 
 export default function PrimaryLayout({ children, user }) {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
-	const [headerHeight, setHeaderHeight] = useState("");
-
-	// useEffect(() => {
-	// 	const height = document.getElementsByClassName("header-wrapper")[0].clientHeight;
-	// 	setHeaderHeight(height);
-	// }, []);
 
 	return (
 		<>
@@ -31,12 +25,6 @@ export default function PrimaryLayout({ children, user }) {
 						justify-content: space-between;
 						gap: 2rem;
 					}
-
-					// @media (max-width: 768px) {
-					// 	:global(.container) {
-					// 		padding-top: ${headerHeight}px;
-					// 	}
-					// }
 				`}</style>
 			</div>
 		</>
