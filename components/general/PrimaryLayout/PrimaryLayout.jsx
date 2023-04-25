@@ -1,18 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { AuthModalContext } from "@/context/AuthModalContext";
 import AuthModal from "../Auth/AuthModal";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function PrimaryLayout({ children, user }) {
 	const { showAuthModal, setShowAuthModal } = useContext(AuthModalContext);
 
+	useEffect(() => {
+		toast.remove();
+	}, []);
 	return (
 		<>
+			<Toaster position="bottom-center" />
 			<div>
 				<Header user={user} />
-				<Toaster position="bottom-center" />
 
 				{children}
 				<Footer />

@@ -5,11 +5,6 @@ import { TbSunFilled, TbMoonStars } from "react-icons/tb";
 export default function ThemeSwitcher() {
 	const [theme, setTheme] = useState("");
 
-	useEffect(() => {
-		const storedTheme = localStorage.getItem("theme") || "darkTheme";
-		setTheme(storedTheme);
-	}, []);
-
 	function toggleTheme() {
 		const newTheme = theme === "darkTheme" ? "lightTheme" : "darkTheme";
 		localStorage.setItem("theme", newTheme);
@@ -17,6 +12,8 @@ export default function ThemeSwitcher() {
 	}
 
 	useLayoutEffect(() => {
+		const storedTheme = localStorage.getItem("theme") || "darkTheme";
+		setTheme(storedTheme);
 		document.body.className = theme;
 	}, [theme]);
 
