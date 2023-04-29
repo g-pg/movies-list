@@ -87,11 +87,7 @@ export default function AuthModal() {
 
 	const register = useCallback(async () => {
 		try {
-			await axios.post("/api/register", formData, {
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			await axios.post("/api/register", formData);
 			login();
 		} catch (error) {
 			setWarning(error.response.data.error);
