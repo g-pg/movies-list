@@ -4,7 +4,26 @@ import MoviesGrid from "@/components/general/MoviesGrid/MoviesGrid";
 import Loading from "@/components/general/Loading/Loading";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useMoviesInfo from "@/hooks/useMoviesInfo";
-import { useSession } from "next-auth/react";
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]";
+
+export async function getServerSideProps(context) {
+	const session = await getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/?auth=true",
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {},
+	};
+}
 
 export default function AssistidosPage() {
 	const { data: user, isLoading, mutate } = useCurrentUser();
@@ -14,13 +33,6 @@ export default function AssistidosPage() {
 		isLoading: loadingMovies,
 		mutate: mutateMovies,
 	} = useMoviesInfo(user && user[moviesList]);
-
-	const { status: authStatus } = useSession({
-		required: true,
-		onUnauthenticated() {
-			router.push("/?auth=true");
-		},
-	});
 
 	if (isLoading) {
 		return <Loading />;
