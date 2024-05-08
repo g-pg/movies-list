@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
-import prismadb from "@lib/prismadb";
+import bcrypt from 'bcrypt';
+import prismadb from '@lib/prismadb';
 
 export default async function handler(req, res) {
-	if (req.method !== "POST") {
+	if (req.method !== 'POST') {
 		return res.status(405).end();
 	}
 
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 		const { name, email, password } = req.body;
 
 		if (!name || !password || !email) {
-			return res.status(401).json({ error: "É preciso preencher todos os campos." });
+			return res.status(401).json({ error: 'É preciso preencher todos os campos.' });
 		}
 		const existingUser = await prismadb.user.findUnique({
 			where: {
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 		});
 
 		if (existingUser) {
-			return res.status(422).json({ error: "Este e-mail já foi cadastrado." });
+			return res.status(422).json({ error: 'Este e-mail já foi cadastrado.' });
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 12);
@@ -34,6 +34,7 @@ export default async function handler(req, res) {
 
 		return res.status(200).json(user);
 	} catch (error) {
-		return res.status(400).json({ error: "Algo deu errado :(" });
+		console.log(error);
+		return res.status(400).json({ error: 'Algo deu errado ' });
 	}
 }
